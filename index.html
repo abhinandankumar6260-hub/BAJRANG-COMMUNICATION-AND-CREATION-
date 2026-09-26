@@ -1,551 +1,2498 @@
-<!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bajrang Communication — Scratch & Win</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#fff}
-.wrap{max-width:960px;margin:auto;padding:18px}
-.card{background:#ffffff12;border:1px solid #ffffff22;border-radius:20px;padding:20px;margin:14px 0}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative}
-h1{margin:0 0 5px;font-size:24px}
-h2,h3{margin-top:0}
-.muted{opacity:.75;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-input,button,select{width:100%;padding:12px;border-radius:11px;border:0;font-size:15px}
-input,select{color:#111}
-button{background:#f59e0b;color:#111;font-weight:700;cursor:pointer}
-.secondary{background:#fff}.danger{background:#ef4444;color:#fff}.success{background:#22c55e}
-.hidden{display:none}
-.nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav button{width:auto}
-.menu-wrap{position:relative}
-.menu-btn{width:48px;height:44px;padding:0;background:#fff;color:#111;font-size:25px;line-height:1}
-.menu{position:absolute;right:0;top:52px;width:190px;background:#fff;color:#111;border-radius:13px;padding:8px;box-shadow:0 12px 35px #0008;z-index:20}
-.menu button{background:transparent;text-align:left;padding:11px;color:#111}
-.menu button:hover{background:#eee}
-.scratch{height:190px;border-radius:18px;background:linear-gradient(135deg,#cbd5e1,#64748b);color:#111;display:flex;align-items:center;justify-content:center;text-align:center;font-size:26px;font-weight:800;cursor:pointer}
-.gift{text-align:center;font-size:28px;padding:25px}
-.stat{background:#0003;border-radius:13px;padding:14px}
-.pill{display:inline-block;padding:6px 10px;border-radius:99px;background:#22c55e;color:#07110a;font-weight:bold}
-.item{display:flex;gap:8px;align-items:center;margin:8px 0}
-.item input:first-child{flex:1}.item button{width:auto}
-.note{border-left:4px solid #f59e0b;padding:10px;background:#0003}
-.invalid{border:2px solid #ef4444!important;box-shadow:0 0 0 3px #ef444433}.valid{border:2px solid #22c55e!important}
-.field-error{color:#fecaca;font-size:12px;font-weight:700;margin-top:5px}.success-overlay{position:fixed;inset:0;background:#020617cc;display:flex;align-items:center;justify-content:center;z-index:9999;animation:fadeIn .25s}.success-box{background:linear-gradient(135deg,#22c55e,#16a34a);padding:32px;border-radius:24px;text-align:center;box-shadow:0 20px 70px #0008;animation:pop .55s cubic-bezier(.2,.8,.2,1)}.success-icon{font-size:64px;animation:bounce .8s}.success-box h2{margin:8px 0}.success-box p{margin:0}.success-box button{margin-top:18px;background:#fff;color:#166534}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes pop{0%{transform:scale(.65);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}@keyframes bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-14px)}70%{transform:translateY(0)}}
-.action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:520px){.action-row{grid-template-columns:1fr}h1{font-size:20px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Festive Scratch & Win | Exclusive Rewards</title>
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --card-bg: rgba(26, 32, 46, 0.85);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --gold-primary: #f59e0b;
+      --gold-light: #fef08a;
+      --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --accent: #6366f1;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Inter", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(17, 24, 39, 0.9) 0%, #0b0f19 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    /* Top Nav / Campaign Branding */
+    header {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 999px;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .qr-host-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #e2e8f0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .qr-host-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--gold-primary);
+      color: #fff;
+    }
+
+    /* Main Container Card */
+    .app-container {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+      z-index: 10;
+      margin-bottom: 24px;
+    }
+
+    /* Stepper Bar */
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .stepper::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    .step-progress-fill {
+      position: absolute;
+      top: 14px;
+      left: 20px;
+      height: 2px;
+      background: var(--gold-primary);
+      z-index: 2;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    .step-item {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .step-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .step-item.active .step-circle {
+      border-color: var(--gold-primary);
+      background: var(--gold-primary);
+      color: #000;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+    }
+
+    .step-item.completed .step-circle {
+      border-color: var(--success);
+      background: var(--success);
+      color: #fff;
+    }
+
+    .step-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .step-item.active .step-label {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* Views / Sections */
+    .view-section {
+      display: none;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 60%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .section-header p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .form-group label .optional {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 12px 14px 12px 42px;
+      font-size: 0.92rem;
+      color: #fff;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--gold-primary);
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+
+    .form-control::placeholder {
+      color: #64748b;
+    }
+
+    .form-error {
+      color: #f87171;
+      font-size: 0.75rem;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .terms-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 18px 0;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      text-align: left;
+    }
+
+    .terms-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--gold-primary);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--gold-gradient);
+      color: #111827;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-demo {
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      color: #94a3b8;
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-demo:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    /* STEP 2: Scratch Card Stage */
+    .scratch-stage {
+      text-align: center;
+    }
+
+    .scratch-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--gold-light);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    /* Scratch Card Box */
+    .scratch-card-box {
+      width: 100%;
+      height: 220px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+      background: #0f172a;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+
+    /* Golden border glow */
+    .scratch-card-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 2px solid rgba(245, 158, 11, 0.4);
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    /* Underneath Layer: Prize Container */
+    .prize-underlayer {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .prize-underlayer::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); }
+      100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .prize-badge {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, #fef08a, #f59e0b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+      animation: bouncePrize 2s infinite ease-in-out;
+    }
+
+    @keyframes bouncePrize {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .prize-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 2;
+      letter-spacing: -0.3px;
+    }
+
+    .prize-subtitle {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-top: 2px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prize-teaser-code {
+      margin-top: 8px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: #94a3b8;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Top Canvas Scratch Overlay */
+    #scratchCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      cursor: crosshair;
+      transition: opacity 0.6s ease;
+      touch-action: none;
+    }
+
+    #scratchCanvas.revealed {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Scratch Progress Bar */
+    .scratch-progress-wrap {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .scratch-progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .scratch-progress-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .scratch-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--gold-gradient);
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    /* Auto Reveal Button in case user wants instant reveal */
+    .btn-quick-reveal {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .btn-quick-reveal:hover {
+      color: var(--gold-light);
+    }
+
+    /* STEP 3: Celebration & Claim Voucher */
+    .celebration-stage {
+      text-align: center;
+      position: relative;
+    }
+
+    .win-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .win-prize-box {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+      border: 2px solid rgba(245, 158, 11, 0.4);
+      border-radius: 18px;
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .win-prize-title {
+      font-size: 1.45rem;
+      font-weight: 900;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .win-prize-sub {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    /* Voucher Code Box */
+    .coupon-box {
+      background: #0f172a;
+      border: 1.5px dashed rgba(245, 158, 11, 0.5);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .coupon-code-text {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #fef08a;
+    }
+
+    .btn-copy {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--gold-light);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-copy:hover {
+      background: var(--gold-primary);
+      color: #000;
+    }
+
+    .btn-copy.copied {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .expiry-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Redemption Guide */
+    .redemption-card {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .redemption-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .redemption-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .redemption-steps li {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.35;
+    }
+
+    .step-num {
+      background: rgba(255, 255, 255, 0.1);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Customer Summary Card */
+    .summary-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: 0.78rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      color: var(--text-muted);
+    }
+
+    .summary-val {
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #e2e8f0;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    /* Confetti Canvas Overlay */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* QR Code Host Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #111827;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .qr-render-box {
+      background: #fff;
+      padding: 16px;
+      border-radius: 16px;
+      display: inline-block;
+      margin: 16px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .qr-render-box svg {
+      display: block;
+      width: 200px;
+      height: 200px;
+    }
+
+    .qr-url-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 14px;
+      font-family: monospace;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(16, 185, 129, 0.95);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      z-index: 300;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+
+    #adminCard .form-control { padding-left:14px; }
+    input[type=date].form-control { color-scheme: dark; }
+    #adminCard th, #adminCard td { border-bottom:1px solid rgba(255,255,255,.05); white-space:nowrap; }
+    #adminCard .gift-row { display:grid;grid-template-columns:1fr 1.2fr .8fr auto auto;gap:7px;align-items:center;margin-bottom:7px; }
+    #adminCard .gift-row input { min-width:0;padding:9px 10px; }
+    .admin-stat { background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.16);border-radius:12px;padding:10px;text-align:center; }
+    .admin-stat strong { display:block;font-size:1.1rem;color:var(--gold-light); }
+    .admin-stat span { font-size:.68rem;color:var(--text-muted); }
+    .admin-page-btn { background:rgba(255,255,255,.08);border:1px solid var(--card-border);color:#fff;border-radius:7px;padding:5px 9px;cursor:pointer; }
+    .admin-page-btn.active { background:var(--gold-primary);color:#111827; }
+    @media(max-width:700px){
+      #adminCard .gift-row { grid-template-columns:1fr 1fr; }
+      #adminCard .gift-row input:last-of-type { grid-column:1/2; }
+    }
+    /* Print View for Retail Store Counter Display */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printArea, #printArea * {
+        visibility: visible;
+      }
+      #printArea {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #fff !important;
+        color: #000 !important;
+        padding: 40px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
 
-<header class="card top">
-  <div>
-    <h1>🎁 Bajrang Communication</h1>
-    <div class="muted">SCRATCH • WIN • CHECK STATUS</div>
-  </div>
-  <div class="menu-wrap">
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">⋮</button>
-    <div id="menu" class="menu hidden">
-      <button onclick="show('adminLogin');closeMenu()">🔐 Admin Login</button>
+  <!-- Confetti Particle Canvas Overlay -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Top Campaign Header -->
+  <header>
+    <div class="brand-pill">
+      <span>✨</span>
+      <span>FESTIVE LUCKY DRAW</span>
+    </div>
+    <button class="qr-host-btn" id="openStatusBtn" title="Check your gift status" style="margin-right:6px;">
+      <span>🔎</span><span>Check Status</span>
+    </button>
+    <button class="qr-host-btn" id="openAdminBtn" title="Admin Login" style="margin-right:6px;">
+      <span>⋮</span><span>Admin</span>
+    </button>
+    <button class="qr-host-btn" id="openQrModalBtn" title="Show QR Code for Store Counter">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      <span>Store QR</span>
+    </button>
+  </header>
+
+  <!-- Main Card Container -->
+  <main class="app-container">
+
+    <!-- Step Progress Indicator -->
+    <div class="stepper" aria-label="Progress Stepper">
+      <div class="step-progress-fill" id="stepProgressFill"></div>
+
+      <div class="step-item active" id="stepIndicator1">
+        <div class="step-circle">1</div>
+        <div class="step-label">Register</div>
+      </div>
+
+      <div class="step-item" id="stepIndicator2">
+        <div class="step-circle">2</div>
+        <div class="step-label">Scratch</div>
+      </div>
+
+      <div class="step-item" id="stepIndicator3">
+        <div class="step-circle">3</div>
+        <div class="step-label">Claim</div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         STEP 1: Registration / Welcome Screen
+    ============================================== -->
+    <section class="view-section active" id="viewRegister">
+      <div class="section-header">
+        <h2>Scan & Win Big! 🎁</h2>
+        <p>Submit your details to unlock your scratch card reward.</p>
+      </div>
+
+      <div style="text-align: right;">
+        <button type="button" class="btn-demo" id="btnQuickDemo">⚡ Auto-fill Demo Data</button>
+      </div>
+
+      <form id="registrationForm" novalidate>
+        <div class="form-group">
+          <label for="userName">Full Name</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <input type="text" id="userName" class="form-control" placeholder="e.g. Abhinandan Kumar" required autocomplete="name">
+          </div>
+          <div class="form-error" id="nameError">Please enter your name</div>
+        </div>
+
+        <div class="form-group">
+          <label for="userPhone">Mobile Number</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </span>
+            <input type="tel" id="userPhone" class="form-control" placeholder="10-digit mobile number" required autocomplete="tel">
+          </div>
+          <div class="form-error" id="phoneError">Please enter a valid 10-digit mobile number</div>
+        </div>
+
+        <div class="form-group">
+          <label for="userEmail">Email Address</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            <input type="email" id="userEmail" class="form-control" placeholder="name@example.com" required autocomplete="email">
+          </div>
+          <div class="form-error" id="emailError">Please enter a valid email address</div>
+        </div>
+
+        <div class="form-group">
+          <label for="purchaseDate">Purchase Date</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📅</span>
+            <input type="date" id="purchaseDate" class="form-control" required>
+          </div>
+          <div class="form-error" id="dateError">Please select the purchase date</div>
+        </div>
+
+        <div class="form-group">
+          <label for="userImei">IMEI Number</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📱</span>
+            <input type="text" id="userImei" class="form-control" placeholder="15-digit IMEI number" inputmode="numeric" maxlength="15" required>
+          </div>
+          <div class="form-error" id="imeiError">Please enter a valid 15-digit IMEI number</div>
+        </div>
+
+        <div class="form-group">
+          <label for="userBill">Order / Receipt Number <span class="optional">(Optional)</span></label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <line x1="6" y1="8" x2="18" y2="8"></line>
+                <line x1="6" y1="12" x2="14" y2="12"></line>
+              </svg>
+            </span>
+            <input type="text" id="userBill" class="form-control" placeholder="e.g. INV-8823">
+          </div>
+        </div>
+
+        <div class="terms-group">
+          <input type="checkbox" id="termsAgree" checked required>
+          <label for="termsAgree">I agree to receive the promotional scratch voucher and confirm this entry is valid.</label>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btnUnlockCard">
+          <span>Get My Lucky Scratch Card</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- ==============================================
+         STEP 2: Interactive Scratch Card View
+    ============================================== -->
+    <section class="view-section" id="viewScratch">
+      <div class="section-header">
+        <h2>Scratch & Win! 🪙</h2>
+        <p>Rub the foil surface using your finger or mouse to uncover your mystery prize.</p>
+      </div>
+
+      <div class="scratch-stage">
+        <div class="scratch-hint">
+          <span>✨</span>
+          <span>Scratch 50% to reveal your prize!</span>
+        </div>
+
+        <!-- Scratch Box Container -->
+        <div class="scratch-card-box" id="scratchCardBox">
+          <!-- Underneath Layer: Revealed Prize -->
+          <div class="prize-underlayer" id="prizeLayer">
+            <div class="prize-badge" id="prizeIcon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#78350f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div class="prize-title" id="prizeTitle">₹500 GIFT VOUCHER</div>
+            <div class="prize-subtitle" id="prizeCategory">🎉 Guaranteed Winner!</div>
+            <div class="prize-teaser-code" id="prizeCodeTeaser">CODE: * * * * * * * *</div>
+          </div>
+
+          <!-- HTML5 Canvas Scratch Foil Overlay -->
+          <canvas id="scratchCanvas"></canvas>
+        </div>
+
+        <!-- Scratch Progress Bar -->
+        <div class="scratch-progress-wrap">
+          <div class="scratch-progress-text">
+            <span>Revealed: <strong id="scratchPercentText" style="color: var(--gold-light);">0%</strong></span>
+            <span>Threshold: 50%</span>
+          </div>
+          <div class="scratch-progress-track">
+            <div class="scratch-progress-bar" id="scratchProgressBar"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         STEP 3: Celebration & Reward Claim
+    ============================================== -->
+    <section class="view-section" id="viewClaim">
+      <div class="celebration-stage">
+        <div class="win-header-badge">
+          <span>🏆</span>
+          <span>REWARD UNLOCKED & VERIFIED</span>
+        </div>
+
+        <div class="win-prize-box">
+          <div class="win-prize-title" id="winPrizeTitle">₹500 GIFT VOUCHER</div>
+          <div class="win-prize-sub" id="winPrizeDesc">Valid on all electronics & mobile accessories</div>
+
+          <!-- Coupon Display Box -->
+          <div class="coupon-box">
+            <span class="coupon-code-text" id="winCouponCode">LUCKY-500-WIN</span>
+            <button class="btn-copy" id="btnCopyCode" title="Copy code to clipboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copyBtnText">Copy Code</span>
+            </button>
+          </div>
+
+          <div class="expiry-text">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="expiryDateText">Valid until: 30 September 2026</span>
+          </div>
+        </div>
+
+        <!-- Redemption Steps -->
+        <div class="redemption-card">
+          <div class="redemption-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold-primary)" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>How to Redeem Your Reward:</span>
+          </div>
+          <ul class="redemption-steps">
+            <li>
+              <span class="step-num">1</span>
+              <span>Present this screen or voucher code at the billing counter during checkout.</span>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <span>Applicable on purchase of eligible smartphones, gadgets, or accessories.</span>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <span>Non-transferable, single-time redemption linked to registered mobile number.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Customer Summary Card -->
+        <div class="summary-card">
+          <div class="summary-row">
+            <span class="summary-label">Participant</span>
+            <span class="summary-val" id="sumName">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Mobile</span>
+            <span class="summary-val" id="sumPhone">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Email</span>
+            <span class="summary-val" id="sumEmail">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Purchase Date</span>
+            <span class="summary-val" id="sumPurchaseDate">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">IMEI</span>
+            <span class="summary-val" id="sumImei">-</span>
+          </div>
+          <div class="summary-row" id="sumBillRow">
+            <span class="summary-label">Invoice / Order #</span>
+            <span class="summary-val" id="sumBill">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Claim Timestamp</span>
+            <span class="summary-val" id="sumTimestamp">-</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="action-row">
+          <button type="button" class="btn-secondary" id="btnRetossConfetti">
+            <span>🎉 Celebrate</span>
+          </button>
+          <button type="button" class="btn-primary" id="btnResetFlow" style="flex: 2;">
+            <span>Scratch Another Card</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================================
+       BONUS FEATURE: Campaign QR Code Modal
+  ============================================== -->
+  <div class="modal-backdrop" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeQrModalBtn" aria-label="Close modal">×</button>
+      <h3 id="qrModalTitle" style="font-size: 1.25rem; font-weight: 800; margin-bottom: 4px;">Store Counter QR Stand</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted);">Display or print this QR code for customers to scan and scratch.</p>
+
+      <div class="qr-render-box" id="qrContainer">
+        <!-- Pure SVG QR Code is inserted here -->
+      </div>
+
+      <input type="text" id="qrCampaignUrl" class="qr-url-input" value="" title="Campaign URL">
+
+      <div class="action-row">
+        <button type="button" class="btn-secondary" id="btnPrintQr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Print Stand Sign</span>
+        </button>
+        <button type="button" class="btn-secondary" id="btnUpdateQrUrl">
+          <span>Update URL</span>
+        </button>
+      </div>
     </div>
   </div>
-</header>
 
-<section id="home" class="card">
-  <h2>Welcome 👋</h2>
-  <p>मोबाइल खरीदने के बाद अपना मोबाइल नंबर और खरीदारी की जानकारी भरकर रजिस्टर करें। इसके बाद Scratch & Win Gift और अपना Status देख सकते हैं।</p>
-  <div class="action-row">
-    <button onclick="show('register')">📱 Customer Registration</button>
-    <button class="secondary" onclick="show('statusLookup')">📊 Check Status</button>
-  </div>
-</section>
 
-<section id="register" class="card hidden">
-  <h2>📱 Customer Registration</h2>
-  <p class="muted">सभी जानकारी भरें और Register & Continue दबाएँ। OTP की जरूरत नहीं है।</p>
-  <div class="grid">
-    <input id="regPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number">
-    <input id="regName" placeholder="Customer Name">
-    <input id="regModel" placeholder="Mobile Model">
-    <input id="regImei" maxlength="15" inputmode="numeric" pattern="\d{15}" placeholder="IMEI Number (15 digits)">
-    <input id="regBill" placeholder="Bill / Invoice Number (Required)"><input id="regDate" type="date" aria-label="Customer Purchase Date" required>
-  </div>
-  <br>
-  <button class="success" onclick="registerCustomer()">Register & Continue</button>
-  <br><br>
-  <button class="secondary" onclick="show('home')">Back</button>
-</section>
-
-<section id="customer" class="hidden">
-  <div class="card top">
-    <h2>👤 Customer Dashboard</h2>
-    <button onclick="show('home')" style="width:auto">Home</button>
-  </div>
-
-  <div class="card">
-    <h3>Purchase Details</h3>
-    <div class="grid">
-      <input id="name" placeholder="Customer Name">
-      <input id="model" placeholder="Mobile Model">
-      <input id="imei" maxlength="15" inputmode="numeric" pattern="\d{15}" placeholder="IMEI Number (15 digits)">
-      <input id="bill" placeholder="Bill / Invoice Number" required>
-      <input id="purchaseDate" type="date" aria-label="Customer Purchase Date" required>
+  <!-- ==============================================
+       CUSTOMER STATUS CHECK
+  ============================================== -->
+  <div class="modal-backdrop" id="statusModal" role="dialog" aria-modal="true">
+    <div class="modal-card" style="max-width:520px;text-align:left;">
+      <button class="modal-close" id="closeStatusBtn" aria-label="Close status">×</button>
+      <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:6px;">🔎 Check Gift Status</h3>
+      <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:16px;">Enter your registered mobile number or 15-digit IMEI.</p>
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input id="statusPhoneInput" class="form-control" style="padding-left:14px" inputmode="numeric" maxlength="10" placeholder="10 digit mobile number">
+      </div>
+      <div style="text-align:center;color:var(--text-muted);font-size:.75rem;margin:-2px 0 10px;">— OR —</div>
+      <div class="form-group">
+        <label>IMEI</label>
+        <input id="statusImeiInput" class="form-control" style="padding-left:14px" inputmode="numeric" maxlength="15" placeholder="15 digit IMEI">
+      </div>
+      <button class="btn-primary" id="checkStatusBtn">Check Status</button>
+      <div id="statusCheckError" style="color:#f87171;font-size:.78rem;margin-top:10px;display:none;"></div>
+      <div id="statusResult" style="display:none;margin-top:14px;"></div>
     </div>
-    <br><button onclick="saveCustomer()">Save Details</button>
   </div>
 
-  <div class="card">
-    <h3>📲 Customer QR</h3>
-    <p class="muted">इस QR को किसी भी मोबाइल से स्कैन करने पर इसी customer की details खुलेंगी।</p>
-    <div id="customerQr" style="text-align:center"></div>
-    <button class="secondary" onclick="copyCustomerLink()">🔗 Copy Customer Link</button>
-  </div>
+  <!-- ==============================================
+       ADMIN LOGIN & DASHBOARD
+  ============================================== -->
+  <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true">
+    <div class="modal-card" id="adminCard" style="max-width:980px;max-height:92vh;overflow:auto;text-align:left;">
+      <button class="modal-close" id="closeAdminBtn" aria-label="Close admin">×</button>
+      <div id="adminLoginView">
+        <h3 style="font-size:1.35rem;font-weight:800;margin-bottom:6px;">🔐 Admin Login</h3>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:18px;">Manage gifts and view customer records.</p>
+        <div class="form-group">
+          <label>Admin ID</label>
+          <input id="adminIdInput" class="form-control" style="padding-left:14px" value="admin">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input id="adminPassInput" type="password" class="form-control" style="padding-left:14px" placeholder="Enter password">
+        </div>
+        <button class="btn-primary" id="adminLoginBtn">Login to Admin</button>
+        <div id="adminLoginError" style="color:#f87171;font-size:.78rem;margin-top:10px;display:none;">Invalid Admin ID or password.</div>
+        <p style="font-size:.7rem;color:var(--text-muted);margin-top:12px;">Default login: admin / admin1234 — change it after login.</p>
+      </div>
 
-  <div class="card">
-    <h3>🎫 Scratch & Win</h3>
-    <div id="scratch" class="scratch" onclick="scratch()">TAP TO SCRATCH</div>
-    <div id="gift"></div>
-  </div>
+      <div id="adminDashboard" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:1.35rem;font-weight:800;">⚙️ Admin Dashboard</h3>
+            <p style="font-size:.78rem;color:var(--text-muted);">Customer database, gifts and settings</p>
+          </div>
+          <button class="btn-secondary" id="adminLogoutBtn" style="flex:0 0 auto;">Logout</button>
+        </div>
 
-  <div class="card">
-    <h3>📊 My Status</h3>
-    <div id="status" class="grid"></div>
-  </div>
-</section>
+        <div id="adminStats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;"></div>
 
-<section id="statusLookup" class="card hidden">
-  <h2>📊 Customer Status</h2>
-  <p class="muted">अपना वही मोबाइल नंबर डालें जिससे Registration किया था।</p>
-  <input id="statusPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number">
-  <br><br>
-  <button onclick="checkStatus()">Check Status</button>
-  <br><br>
-  <div id="statusResult"></div>
-  <br>
-  <button class="secondary" onclick="show('home')">Back</button>
-</section>
+        <div style="background:rgba(15,23,42,.55);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-bottom:16px;">
+          <h4 style="margin-bottom:10px;">🎁 Gift Settings</h4>
+          <div id="giftList"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;margin-top:10px;">
+            <input id="newGiftTitle" class="form-control" style="padding-left:12px" placeholder="Gift name">
+            <input id="newGiftDesc" class="form-control" style="padding-left:12px" placeholder="Gift description">
+            <input id="newGiftPrefix" class="form-control" style="padding-left:12px" placeholder="Code prefix">
+            <button class="btn-primary" id="addGiftBtn" style="padding:10px 14px;">+ Add</button>
+          </div>
+        </div>
 
-<section id="adminLogin" class="card hidden">
-  <h2>🔐 Admin Login</h2>
-  <input id="adminId" placeholder="Admin ID">
-  <br><br>
-  <input id="adminPass" type="password" placeholder="Password">
-  <br><br>
-  <button onclick="adminLogin()">Login</button>
-  <br><br>
-  <button class="secondary" onclick="show('home')">Back</button>
-</section>
-
-<section id="admin" class="hidden">
-  <div class="card top">
-    <h2>👨‍💼 Admin Dashboard</h2>
-    <button onclick="show('home')" style="width:auto">Logout</button>
-  </div>
-
-  <div class="card">
-    <h3>🎁 Gifts सेट करें</h3>
-    <p class="muted">Gift का नाम और Weight बदलें। Weight अधिक = winning chance अधिक।</p>
-    <div id="giftList"></div>
-    <button onclick="addGift()">+ Add Gift</button>
-    <br><br><button class="success" onclick="saveGifts()">Save Gifts</button>
-  </div>
-
-  <div class="card">
-    <h3>⚙️ Scratch Rules</h3>
-    <div class="grid">
-      <label>Max Scratch per IMEI
-        <input id="maxScratch" type="number" min="1">
-      </label>
-      <label>Claim Status
-        <select id="claim">
-          <option>Ready to Collect</option>
-          <option>Pending</option>
-        </select>
-      </label>
+        <div style="background:rgba(15,23,42,.55);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;">
+            <h4>👥 Customers <span id="customerCountBadge" style="color:var(--gold-light);"></span></h4>
+            <div style="display:flex;gap:6px;">
+              <input id="customerSearch" class="form-control" style="padding:9px 10px;width:180px" placeholder="Search name/mobile/IMEI">
+              <button class="btn-secondary" id="clearCustomersBtn" style="flex:0 0 auto;">Clear All</button>
+            </div>
+          </div>
+          <div style="overflow:auto;">
+            <table id="customerTable" style="width:100%;border-collapse:collapse;font-size:.72rem;">
+              <thead><tr style="color:var(--gold-light);text-align:left;border-bottom:1px solid rgba(255,255,255,.1);">
+                <th style="padding:8px">#</th><th style="padding:8px">Name</th><th style="padding:8px">Mobile</th><th style="padding:8px">Date</th><th style="padding:8px">IMEI</th><th style="padding:8px">Invoice</th><th style="padding:8px">Gift</th><th style="padding:8px">Status</th><th style="padding:8px">Admin Action</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div id="customerPagination" style="display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap;"></div>
+        </div>
+      </div>
     </div>
-    <br><button onclick="saveRules()">Save Rules</button>
   </div>
 
-  <div class="card">
-    <h3>☁️ Google Sheet Sync</h3>
-    <p class="muted">Admin में records Google Sheet से refresh किए जा सकते हैं।</p>
-    <button class="secondary" onclick="renderRecords()">🔄 Refresh from Google Sheet</button>
-  </div>
-
-  <div class="card">
-    <h3>👥 Customer Records</h3>
-    <input id="recordSearch" placeholder="Search Name / Mobile / IMEI / Model / Invoice"><br><br><div id="records" class="muted"></div><div id="recordPager" class="action-row" style="margin-top:12px"></div>
-  </div>
-</section>
-
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWZtdwYDKVsxbeabnPIlfanjZzxlb9OCfc6Yy2aAwdA6pFO76LK8HcKgTXhzStNAMy/exec";
-let gifts=JSON.parse(localStorage.getItem("bcc_gifts")||"[]");
-if(!gifts.length)gifts=[
-  {name:"Bluetooth Earphone",weight:1},
-  {name:"Fast Charger",weight:1},
-  {name:"Mobile Cover",weight:2},
-  {name:"Tempered Glass",weight:3}
-];
-
-let rules=JSON.parse(localStorage.getItem("bcc_rules")||'{"maxScratch":1,"claim":"Ready to Collect"}');
-let current=null,recordPage=1; const RECORDS_PER_PAGE=50;
-
-const db=()=>JSON.parse(localStorage.getItem("bcc_customers")||"{}");
-const put=x=>localStorage.setItem("bcc_customers",JSON.stringify(x));
-
-function toggleMenu(){document.getElementById("menu").classList.toggle("hidden")}
-function closeMenu(){document.getElementById("menu").classList.add("hidden")}
-
-function show(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-  closeMenu();
-  if(id==="admin")renderAdmin();
-  if(id==="customer")loadCustomer();
-}
-
-async function registerCustomer(){
-  const phone=regPhone.value.trim(), customerName=regName.value.trim(), mobileModel=regModel.value.trim(),
-        customerImei=regImei.value.trim(), billNo=regBill.value.trim(), purchaseDate=regDate.value;
-  if(!/^\d{10}$/.test(phone))return alert("10 digit mobile number डालें");
-  if(!customerName||!mobileModel||!customerImei)return alert("Name, Model और IMEI भरें");
-  if(!/^\d{15}$/.test(customerImei))return alert("IMEI बिल्कुल 15 digits का होना चाहिए।");
-  if(!billNo)return alert("Invoice Number डालना जरूरी है।");
-  if(!purchaseDate)return alert("Purchase Date डालना जरूरी है।");
-
-  let d=db(), old=d[phone]||{};
-  const duplicateInvoice=Object.values(d).find(c=>String(c.bill||"").trim().toLowerCase()===billNo.toLowerCase()&&c.phone!==phone);
-  if(duplicateInvoice)return alert("यह Invoice Number पहले से registered है। दूसरा Invoice Number डालें।");
-  const serverDup=await apiRequest("checkInvoice",{bill:billNo,phone});
-  if(serverDup?.exists)return alert("यह Invoice Number पहले से Google Sheet में registered है। दूसरा Invoice Number डालें।");
-
-  const duplicate=Object.values(d).find(c=>c.imei===customerImei&&c.phone!==phone);
-  if(duplicate)return alert("यह IMEI पहले से registered है। एक IMEI दोबारा register नहीं किया जा सकता।");
-  if(old.imei&&old.imei!==customerImei)return alert("इस customer का IMEI पहले से saved है।");
-  if(old.bill&&old.bill.toLowerCase()!==billNo.toLowerCase())return alert("इस customer का Invoice Number बदला नहीं जा सकता।");
-
-  const c={...old,phone,name:customerName,model:mobileModel,imei:customerImei,bill:billNo,purchaseDate,
-    scratchCount:old.scratchCount||0,gift:old.gift||"",claim:old.claim||"Pending"};
-  d[phone]=c;put(d);current=phone;show("customer");alert("Registration successful");
-  syncRecord(c);
-}
-
-async function loadCustomer(){
-  let d=db(),c=d[current];
-  const server= current ? await loadServerCustomer(current) : null;
-  if(server){
-    c=server;
-    d[current]=server;
-    put(d);
-  }
-  if(!c){show("home");return}
-  name.value=c.name||"";
-  model.value=c.model||"";
-  imei.value=c.imei||"";
-  bill.value=c.bill||"";
-  purchaseDate.value=c.purchaseDate||"";
-  renderCustomer(c);
-}
-
-async function saveCustomer(){
-  let d=db(),old=d[current]||{},newImei=imei.value.trim(),newBill=bill.value.trim(),newDate=purchaseDate.value;
-  if(!name.value.trim()||!model.value.trim()||!newImei)return alert("Name, Model और IMEI भरें");
-  if(!/^\d{15}$/.test(newImei))return alert("IMEI बिल्कुल 15 digits का होना चाहिए।");
-  if(!newBill)return alert("Invoice Number डालना जरूरी है।");
-  if(!newDate)return alert("Purchase Date डालना जरूरी है।");
-  if(Object.values(d).some(c=>String(c.bill||"").trim().toLowerCase()===newBill.toLowerCase()&&c.phone!==current))
-    return alert("यह Invoice Number किसी दूसरे customer के नाम पर पहले से registered है।");
-  const serverDup=await apiRequest("checkInvoice",{bill:newBill,phone:current});
-  if(serverDup?.exists)return alert("यह Invoice Number किसी दूसरे customer के नाम पर Google Sheet में पहले से registered है।");
-  if(Object.values(d).some(c=>c.imei===newImei&&c.phone!==current))
-    return alert("यह IMEI किसी दूसरे customer के नाम पर पहले से registered है।");
-  if(old.imei&&old.imei!==newImei)return alert("Saved IMEI बदला नहीं जा सकता।");
-  if(old.bill&&old.bill.toLowerCase()!==newBill.toLowerCase())return alert("Saved Invoice Number बदला नहीं जा सकता।");
-
-  let c={...old,phone:current,name:name.value.trim(),model:model.value.trim(),imei:newImei,bill:newBill,purchaseDate:newDate,
-    scratchCount:old.scratchCount||0,gift:old.gift||"",claim:old.claim||"Pending"};
-  d[current]=c;put(d);renderCustomer(c);syncRecord(c);alert("Details saved");
-}
-
-function invalidField(el,msg){
-  el.classList.add("invalid");
-  el.classList.remove("valid");
-  const old=el.parentElement.querySelector(".field-error");
-  if(old)old.remove();
-  const e=document.createElement("div");e.className="field-error";e.textContent=msg;
-  el.insertAdjacentElement("afterend",e);
-  el.focus();
-  setTimeout(()=>el.classList.remove("invalid"),1800);
-  return false;
-}
-function showSuccessAnimation(title,msg){
-  const old=document.getElementById("successOverlay");if(old)old.remove();
-  const d=document.createElement("div");d.id="successOverlay";d.className="success-overlay";
-  d.innerHTML=`<div class="success-box"><div class="success-icon">🎉</div><h2>${esc(title)}</h2><p>${esc(msg)}</p><button onclick="document.getElementById('successOverlay').remove()">Continue</button></div>`;
-  document.body.appendChild(d);
-  setTimeout(()=>{const x=document.getElementById("successOverlay");if(x)x.remove()},3500);
-}
-document.addEventListener("input",e=>{
-  if(e.target.matches("input")){e.target.classList.remove("invalid");const er=e.target.parentElement.querySelector(".field-error");if(er)er.remove();}
-});
-
-function pick(){
-  let total=gifts.reduce((s,g)=>s+Math.max(0,+g.weight||0),0);
-  if(!total)return "Gift";
-  let r=Math.random()*total;
-  for(const g of gifts){
-    r-=Math.max(0,+g.weight||0);
-    if(r<=0)return g.name;
-  }
-  return gifts[0]?.name||"Gift";
-}
-
-function scratch(){
-  let d=db(),c=d[current];
-  if(!c?.imei)return alert("पहले Purchase Details save करें");
-  if((c.scratchCount||0)>=(+rules.maxScratch||1))
-    return alert("इस IMEI की scratch limit पूरी हो चुकी है");
-
-  c.scratchCount=(c.scratchCount||0)+1;
-  c.gift=pick();
-  c.claim='Pending';
-  d[current]=c;put(d);renderCustomer(c);syncRecord(c);
-
-  gift.innerHTML='<div class="card gift">🎉 Congratulations!<br>🎁 <b>'+
-    esc(c.gift)+'</b><br><span class="pill">'+esc(c.claim)+'</span></div>';
-}
-
-function renderCustomer(c){
-  scratch.textContent=c.scratchCount?"✅ Scratch Completed":"TAP TO SCRATCH";
-  gift.innerHTML=c.gift?
-    '<div class="card gift">🎁 <b>'+esc(c.gift)+'</b><br><span class="pill">'+esc(c.claim||"Pending")+'</span></div>':'';
-
-  status.innerHTML=[
-    ["Name",c.name],["Mobile",c.phone],["Model",c.model],["IMEI",c.imei],
-    ["Bill",c.bill],["Purchase Date",c.purchaseDate],
-    ["Scratch",c.scratchCount?`Completed (${c.scratchCount})`:"Available"],
-    ["Gift",c.gift||"Not revealed"],["Gift Status",c.claim||"Pending"]
-  ].map(a=>`<div class="stat"><b>${esc(a[0])}</b><br>${esc(a[1]||"-")}</div>`).join("");
-  renderCustomerQR(c);
-}
-
-async function checkStatus(){
-  const phone=statusPhone.value.trim();
-  if(!/^\d{10}$/.test(phone))return alert("10 digit mobile number डालें");
-
-  // Google Sheet को latest source मानें ताकि Admin approval का नया status दिखे
-  let c=await loadServerCustomer(phone);
-  if(c){
-    let d=db(); d[phone]=c; put(d);
-  } else {
-    c=db()[phone];
-  }
-  if(!c){
-    statusResult.innerHTML='<div class="note">इस मोबाइल नंबर का कोई Registration Record नहीं मिला।</div>';
-    return;
-  }
-
-  statusResult.innerHTML=`
-    <div class="grid">
-      <div class="stat"><b>Name</b><br>${esc(c.name||"-")}</div>
-      <div class="stat"><b>Mobile</b><br>${esc(c.phone||"-")}</div>
-      <div class="stat"><b>Model</b><br>${esc(c.model||"-")}</div>
-      <div class="stat"><b>IMEI</b><br>${esc(c.imei||"-")}</div>
-      <div class="stat"><b>Scratch</b><br>${c.scratchCount?"Completed":"Available"}</div>
-      <div class="stat"><b>Gift</b><br>${esc(c.gift||"Not revealed")}</div>
-      <div class="stat"><b>Gift Status</b><br>${esc(c.claim||"Pending")}</div>
+  <!-- Printable Area for Counter Tent Card -->
+  <div id="printArea" style="display: none;">
+    <div style="max-width: 500px; margin: 0 auto; border: 4px double #d97706; padding: 30px; border-radius: 16px; font-family: sans-serif;">
+      <h1 style="font-size: 28px; margin-bottom: 8px; color: #b45309;">✨ SCAN TO SCRATCH & WIN! ✨</h1>
+      <p style="font-size: 16px; color: #475569; margin-bottom: 24px;">Scan with your phone camera to reveal your exclusive in-store prize voucher</p>
+      <div id="printQrSpot" style="margin: 20px auto; display: inline-block;"></div>
+      <h2 style="font-size: 22px; color: #1e293b; margin-top: 16px;">Guaranteed Prizes & Discounts!</h2>
+      <p style="font-size: 14px; color: #64748b; margin-top: 8px;">Bajrang Communication • Special Retail Celebration</p>
     </div>
-    <br><button class="success" onclick="current='${escAttr(phone)}';show('customer')">Open My Dashboard</button>
-  `;
-}
+  </div>
 
-function adminLogin(){
-  if(adminId.value==="admin"&&adminPass.value==="Bajrang@2026")show("admin");
-  else alert("Invalid Admin ID/Password");
-}
+  <!-- Floating Toast Notification -->
+  <div class="toast-msg" id="toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toastText">Coupon code copied to clipboard!</span>
+  </div>
 
-function renderAdmin(){maxScratch.value=rules.maxScratch;claim.value=rules.claim;renderGifts();recordPage=1;renderRecords();}
-async function renderRecords(){
-  const serverRecords=await loadServerRecords();
-  let a=serverRecords || Object.values(db());
-  if(serverRecords){
-    const d=db();
-    serverRecords.forEach(c=>d[c.phone]=c);
-    put(d);
-  }
-  let q=(recordSearch?.value||"").trim().toLowerCase();
-  if(q)a=a.filter(c=>[c.name,c.phone,c.imei,c.model,c.bill].some(v=>String(v||"").toLowerCase().includes(q)));
-  const pages=Math.max(1,Math.ceil(a.length/RECORDS_PER_PAGE)); if(recordPage>pages)recordPage=pages;
-  const items=a.slice((recordPage-1)*RECORDS_PER_PAGE,recordPage*RECORDS_PER_PAGE);
-  records.innerHTML=items.length?items.map(c=>`<div class="stat" style="margin:8px 0"><b>${esc(c.name||"-")}</b> | ${esc(c.phone)} | ${esc(c.model||"-")}<br>IMEI: <b>${esc(c.imei||"-")}</b> | Invoice: <b>${esc(c.bill||"-")}</b> | Date: <b>${esc(c.purchaseDate||"-")}</b> | Gift: <b>${esc(c.gift||"-")}</b> | Status: <span class="pill">${esc(c.claim||"Pending")}</span><br><br><div class="action-row"><select onchange="setGiftStatus('${escAttr(c.phone)}',this.value)"><option value="Pending" ${c.claim==='Pending'?'selected':''}>Pending</option><option value="Approved" ${c.claim==='Approved'?'selected':''}>Approved</option><option value="Rejected" ${c.claim==='Rejected'?'selected':''}>Rejected</option></select><button class="danger" onclick="deleteCustomer('${escAttr(c.phone)}')">🗑️ Delete Customer</button></div></div>`).join(""):"No records found.";
-  recordPager.innerHTML=`<button class="secondary" onclick="changeRecordPage(-1)" ${recordPage<=1?'disabled':''}>⬅ Previous</button><div class="stat" style="text-align:center">Page ${recordPage} / ${pages}<br>${a.length} customer(s)</div><button class="secondary" onclick="changeRecordPage(1)" ${recordPage>=pages?'disabled':''}>Next ➡</button>`;
-}
-function changeRecordPage(n){recordPage=Math.max(1,recordPage+n);renderRecords()}
-async function setGiftStatus(phone,statusValue){
-  let d=db(),c=d[phone];
-  if(!c){
-    c=await loadServerCustomer(phone);
-    if(c){ d[phone]=c; put(d); }
-  }
-  if(!c)return alert("Customer record नहीं मिला।");
+  <!-- ==============================================
+       APPLICATION SCRIPTS
+  ============================================== -->
+  <script>
+    /* ==========================================================
+       1. Standalone Mini QR Generator (Zero-dependency SVG QR)
+    ========================================================== */
+    const MiniQR = (function() {
+      const GF256_EXP = new Uint8Array(512);
+      const GF256_LOG = new Uint8Array(256);
+      let x = 1;
+      for (let i = 0; i < 255; i++) {
+        GF256_EXP[i] = x;
+        GF256_EXP[i + 255] = x;
+        GF256_LOG[x] = i;
+        x = (x << 1) ^ (x & 0x80 ? 0x11d : 0);
+      }
 
-  c.claim=statusValue;
-  d[phone]=c;
-  put(d);
+      function gfMul(a, b) {
+        if (a === 0 || b === 0) return 0;
+        return GF256_EXP[GF256_LOG[a] + GF256_LOG[b]];
+      }
 
-  const r=await syncRecord(c);
-  if(!r || !r.ok){
-    alert("Gift status Google Sheet में update नहीं हो पाया। कृपया फिर से कोशिश करें।");
-    return;
-  }
+      function rsGenPoly(degree) {
+        let poly = [1];
+        for (let i = 0; i < degree; i++) {
+          let next = new Array(poly.length + 1).fill(0);
+          for (let j = 0; j < poly.length; j++) {
+            next[j] ^= gfMul(poly[j], GF256_EXP[i]);
+            next[j + 1] ^= poly[j];
+          }
+          poly = next;
+        }
+        return poly;
+      }
 
-  // Server value वापस लेकर local cache भी update करें
-  const fresh=await loadServerCustomer(phone);
-  if(fresh){
-    d[phone]=fresh;
-    put(d);
-  }
+      function rsEncode(data, ecCount) {
+        const gen = rsGenPoly(ecCount);
+        const res = new Uint8Array(data.length + ecCount);
+        res.set(data, 0);
+        for (let i = 0; i < data.length; i++) {
+          const coef = res[i];
+          if (coef !== 0) {
+            for (let j = 0; j < gen.length; j++) {
+              res[i + j] ^= gfMul(gen[j], coef);
+            }
+          }
+        }
+        return res.slice(data.length);
+      }
 
-  renderRecords();
+      const TABLE_L = [
+        null,
+        [1, 21, 26, 7, 1, 19, 0, 0, []],
+        [2, 25, 44, 10, 1, 34, 0, 0, [6, 18]],
+        [3, 29, 70, 15, 1, 55, 0, 0, [6, 22]],
+        [4, 33, 100, 20, 1, 80, 0, 0, [6, 26]],
+        [5, 37, 134, 26, 1, 108, 0, 0, [6, 30]],
+        [6, 41, 172, 18, 2, 68, 0, 0, [6, 34]],
+        [7, 45, 196, 20, 2, 78, 0, 0, [6, 22, 38]],
+        [8, 49, 242, 24, 2, 97, 0, 0, [6, 24, 42]],
+        [9, 53, 292, 30, 2, 116, 0, 0, [6, 26, 46]],
+        [10, 57, 346, 18, 2, 68, 2, 69, [6, 28, 50]]
+      ];
 
-  // अगर यही customer dashboard खुला है तो status तुरंत बदलें
-  if(current===phone){
-    renderCustomer(d[phone]);
-  }
-}
+      const FORMAT_INFO_L = [0x77c4, 0x72f3, 0x7daa, 0x789d, 0x662f, 0x6318, 0x6c41, 0x6976];
 
-async function deleteCustomer(phone){
-  let d=db(),c=d[phone];
-  if(!c){
-    c=await loadServerCustomer(phone);
-    if(c){ d[phone]=c; put(d); }
-  }
-  if(!c)return alert("Customer record नहीं मिला।");
+      function createMatrix(text) {
+        const utf8 = new TextEncoder().encode(text);
+        const dataLen = utf8.length;
+        let vInfo = null;
+        for (let v = 1; v <= 10; v++) {
+          const spec = TABLE_L[v];
+          const maxData = (spec[4] * spec[5]) + (spec[6] * spec[7]);
+          const overhead = v < 10 ? 2 : 3;
+          if (dataLen + overhead <= maxData) {
+            vInfo = spec;
+            break;
+          }
+        }
+        if (!vInfo) throw new Error("URL is too long for QR generator");
 
-  if(!confirm(`क्या आप ${c.name||"इस customer"} का पूरा record delete करना चाहते हैं?`))return;
+        const [version, size, totalCW, ecCount, b1, d1, b2, d2, alignPos] = vInfo;
+        const totalDataCW = (b1 * d1) + (b2 * d2);
 
-  const r=await apiRequest("delete",{phone},"POST");
-  if(!r || !r.ok){
-    alert(r?.error || "Google Sheet से customer delete नहीं हो पाया।");
-    return;
-  }
+        const bits = [];
+        function pushBits(val, len) {
+          for (let i = len - 1; i >= 0; i--) bits.push((val >> i) & 1);
+        }
 
-  delete d[phone];
-  put(d);
-  if(current===phone)current=null;
-  await renderRecords();
-  alert("Customer record Google Sheet से delete हो गया।");
-}
+        // Byte mode 0100
+        pushBits(4, 4);
+        pushBits(dataLen, version < 10 ? 8 : 16);
+        for (let i = 0; i < dataLen; i++) pushBits(utf8[i], 8);
 
-function renderGifts(){
-  giftList.innerHTML=gifts.map((g,i)=>
-    `<div class="item">
-      <input value="${escAttr(g.name)}" onchange="gifts[${i}].name=this.value">
-      <input type="number" min="0" value="${g.weight}" style="max-width:100px" onchange="gifts[${i}].weight=+this.value">
-      <button class="danger" onclick="gifts.splice(${i},1);renderGifts()">Delete</button>
-    </div>`).join("");
-}
+        const capBits = totalDataCW * 8;
+        const termLen = Math.min(4, capBits - bits.length);
+        pushBits(0, termLen);
+        while (bits.length % 8 !== 0) bits.push(0);
 
-document.addEventListener("input",e=>{if(e.target&&e.target.id==="recordSearch"){recordPage=1;renderRecords()}});
-function addGift(){gifts.push({name:"New Gift",weight:1});renderGifts()}
-function saveGifts(){localStorage.setItem("bcc_gifts",JSON.stringify(gifts));alert("Gifts saved")}
-function saveRules(){
-  rules={maxScratch:+maxScratch.value||1,claim:claim.value};
-  localStorage.setItem("bcc_rules",JSON.stringify(rules));
-  alert("Rules saved");
-}
+        const padBytes = [0xec, 0x11];
+        let padIdx = 0;
+        while (bits.length < capBits) {
+          pushBits(padBytes[padIdx % 2], 8);
+          padIdx++;
+        }
 
+        const dataCodewords = new Uint8Array(totalDataCW);
+        for (let i = 0; i < totalDataCW; i++) {
+          let b = 0;
+          for (let j = 0; j < 8; j++) b = (b << 1) | bits[i * 8 + j];
+          dataCodewords[i] = b;
+        }
 
-async function apiRequest(action, payload={}, method="GET"){
-  if(!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE")) return null;
-  try{
-    if(method==="GET"){
-      const u=new URL(SCRIPT_URL);
-      u.searchParams.set("action",action);
-      Object.entries(payload||{}).forEach(([k,v])=>u.searchParams.set(k,String(v??"")));
-      const r=await fetch(u.toString(),{method:"GET",cache:"no-store"});
-      return await r.json();
+        const blocksData = [];
+        const blocksEC = [];
+        let offset = 0;
+        for (let i = 0; i < b1; i++) {
+          const blk = dataCodewords.slice(offset, offset + d1);
+          blocksData.push(blk);
+          blocksEC.push(rsEncode(blk, ecCount));
+          offset += d1;
+        }
+        for (let i = 0; i < b2; i++) {
+          const blk = dataCodewords.slice(offset, offset + d2);
+          blocksData.push(blk);
+          blocksEC.push(rsEncode(blk, ecCount));
+          offset += d2;
+        }
+
+        const finalCodewords = [];
+        const maxDataLen = Math.max(d1, d2);
+        for (let j = 0; j < maxDataLen; j++) {
+          for (let i = 0; i < blocksData.length; i++) {
+            if (j < blocksData[i].length) finalCodewords.push(blocksData[i][j]);
+          }
+        }
+        for (let j = 0; j < ecCount; j++) {
+          for (let i = 0; i < blocksEC.length; i++) {
+            finalCodewords.push(blocksEC[i][j]);
+          }
+        }
+
+        const finalBits = [];
+        for (let i = 0; i < finalCodewords.length; i++) {
+          for (let b = 7; b >= 0; b--) finalBits.push((finalCodewords[i] >> b) & 1);
+        }
+        const remainderBits = [0, 0, 7, 7, 7, 7, 7, 0, 0, 0, 0][version] || 0;
+        for (let i = 0; i < remainderBits; i++) finalBits.push(0);
+
+        const grid = Array.from({ length: size }, () => new Array(size).fill(null));
+        const isFunction = Array.from({ length: size }, () => new Array(size).fill(false));
+
+        function setFunction(r, c, val) {
+          grid[r][c] = val;
+          isFunction[r][c] = true;
+        }
+
+        function drawFinder(row, col) {
+          for (let r = -1; r <= 7; r++) {
+            for (let c = -1; c <= 7; c++) {
+              const nr = row + r;
+              const nc = col + c;
+              if (nr >= 0 && nr < size && nc >= 0 && nc < size) {
+                if (r >= 0 && r <= 6 && c >= 0 && c <= 6) {
+                  if (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
+                    setFunction(nr, nc, 1);
+                  } else {
+                    setFunction(nr, nc, 0);
+                  }
+                } else {
+                  setFunction(nr, nc, 0);
+                }
+              }
+            }
+          }
+        }
+        drawFinder(0, 0);
+        drawFinder(0, size - 7);
+        drawFinder(size - 7, 0);
+
+        if (alignPos && alignPos.length > 0) {
+          for (let i = 0; i < alignPos.length; i++) {
+            for (let j = 0; j < alignPos.length; j++) {
+              const ar = alignPos[i];
+              const ac = alignPos[j];
+              if ((ar <= 8 && ac <= 8) || (ar <= 8 && ac >= size - 8) || (ar >= size - 8 && ac <= 8)) continue;
+              for (let r = -2; r <= 2; r++) {
+                for (let c = -2; c <= 2; c++) {
+                  setFunction(ar + r, ac + c, Math.max(Math.abs(r), Math.abs(c)) === 1 ? 0 : 1);
+                }
+              }
+            }
+          }
+        }
+
+        for (let c = 8; c < size - 8; c++) {
+          if (!isFunction[6][c]) setFunction(6, c, c % 2 === 0 ? 1 : 0);
+        }
+        for (let r = 8; r < size - 8; r++) {
+          if (!isFunction[r][6]) setFunction(r, 6, r % 2 === 0 ? 1 : 0);
+        }
+
+        setFunction(4 * version + 9, 8, 1);
+
+        for (let i = 0; i <= 8; i++) {
+          if (!isFunction[8][i]) isFunction[8][i] = true;
+          if (!isFunction[i][8]) isFunction[i][8] = true;
+        }
+        for (let i = 0; i < 8; i++) {
+          if (!isFunction[8][size - 1 - i]) isFunction[8][size - 1 - i] = true;
+          if (!isFunction[size - 1 - i][8]) isFunction[size - 1 - i] = true;
+        }
+
+        let bitIdx = 0;
+        let up = true;
+        for (let right = size - 1; right > 0; right -= 2) {
+          if (right === 6) right--;
+          const cols = [right, right - 1];
+          const rows = up ? Array.from({ length: size }, (_, i) => size - 1 - i) : Array.from({ length: size }, (_, i) => i);
+          for (const r of rows) {
+            for (const c of cols) {
+              if (!isFunction[r][c]) {
+                grid[r][c] = bitIdx < finalBits.length ? finalBits[bitIdx++] : 0;
+              }
+            }
+          }
+          up = !up;
+        }
+
+        const formatBits = FORMAT_INFO_L[0];
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (!isFunction[r][c]) {
+              if ((r + c) % 2 === 0) grid[r][c] ^= 1;
+            }
+          }
+        }
+
+        for (let i = 0; i < 15; i++) {
+          const bit = (formatBits >> i) & 1;
+          if (i <= 5) setFunction(8, i, bit);
+          else if (i === 6) setFunction(8, 7, bit);
+          else if (i === 7) setFunction(8, 8, bit);
+          else if (i === 8) setFunction(7, 8, bit);
+          else setFunction(14 - i, 8, bit);
+
+          if (i < 8) setFunction(size - 1 - i, 8, bit);
+          else setFunction(8, size - 15 + i, bit);
+        }
+
+        return grid;
+      }
+
+      function toSVG(text, pixelSize = 5, margin = 4) {
+        const grid = createMatrix(text);
+        const size = grid.length;
+        const totalSize = (size + margin * 2) * pixelSize;
+        let rects = '';
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (grid[r][c] === 1) {
+              rects += `<rect x="${(c + margin) * pixelSize}" y="${(r + margin) * pixelSize}" width="${pixelSize}" height="${pixelSize}" fill="#0f172a"/>`;
+            }
+          }
+        }
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalSize} ${totalSize}" width="${totalSize}" height="${totalSize}"><rect width="100%" height="100%" fill="#ffffff" rx="12"/>${rects}</svg>`;
+      }
+
+      return { toSVG };
+    })();
+
+    /* ==========================================================
+       2. Confetti Animation Engine (Pure Vanilla Canvas)
+    ========================================================== */
+    class ConfettiEngine {
+      constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.animationFrame = null;
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+      }
+
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+
+      burst(count = 140) {
+        const colors = ['#f59e0b', '#fbbf24', '#10b981', '#6366f1', '#ec4899', '#38bdf8', '#ffffff'];
+        for (let i = 0; i < count; i++) {
+          this.particles.push({
+            x: this.canvas.width / 2 + (Math.random() - 0.5) * 80,
+            y: this.canvas.height * 0.45 + (Math.random() - 0.5) * 40,
+            w: Math.random() * 9 + 5,
+            h: Math.random() * 8 + 4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vx: (Math.random() - 0.5) * 18,
+            vy: (Math.random() * -14) - 4,
+            rotation: Math.random() * 360,
+            rotSpeed: (Math.random() - 0.5) * 12,
+            gravity: 0.35,
+            friction: 0.96,
+            wobble: Math.random() * Math.PI,
+            opacity: 1,
+            fade: Math.random() * 0.008 + 0.004
+          });
+        }
+        if (!this.animationFrame) {
+          this.render();
+        }
+      }
+
+      render() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          const p = this.particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += p.gravity;
+          p.vx *= p.friction;
+          p.rotation += p.rotSpeed;
+          p.opacity -= p.fade;
+
+          if (p.opacity <= 0 || p.y > this.canvas.height + 20) {
+            this.particles.splice(i, 1);
+            continue;
+          }
+
+          this.ctx.save();
+          this.ctx.translate(p.x, p.y);
+          this.ctx.rotate((p.rotation * Math.PI) / 180);
+          this.ctx.globalAlpha = Math.max(0, p.opacity);
+          this.ctx.fillStyle = p.color;
+          this.ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          this.ctx.restore();
+        }
+
+        if (this.particles.length > 0) {
+          this.animationFrame = requestAnimationFrame(() => this.render());
+        } else {
+          this.animationFrame = null;
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+      }
     }
-    const r=await fetch(SCRIPT_URL,{
-      method:"POST",mode:"cors",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      cache:"no-store",
-      body:JSON.stringify({action,...payload})
+
+    /* ==========================================================
+       3. Main Application Controller & Scratch Mechanics
+    ========================================================== */
+    const App = {
+      user: {
+        name: '',
+        phone: '',
+        email: '',
+        bill: '',
+        purchaseDate: '',
+        imei: '',
+        claimedAt: ''
+      },
+      prizesPool: [
+        { title: '₹500 GIFT VOUCHER', desc: 'Valid on all smartphones & accessories above ₹1,999', prefix: 'FESTIVE500' },
+        { title: '30% OFF ACCESSORIES', desc: 'Instant discount on earbuds, cases, chargers & wearables', prefix: 'SAVE30' },
+        { title: 'FREE WIRELESS EARBUDS', desc: 'Complimentary with any 5G handset purchase today', prefix: 'FREETWS' },
+        { title: '₹1,000 MEGA CASHBACK', desc: 'Instant store credit on Galaxy & flagship models', prefix: 'CASH1000' },
+        { title: 'BUY 1 GET 1 SCREEN GUARD', desc: 'Free premium tempered glass for you and family', prefix: 'BOGO-GLASS' }
+      ],
+      currentPrize: null,
+      currentVoucherCode: '',
+      isScratching: false,
+      hasRevealed: false,
+      formSubmitted: false,
+      lastPoint: null,
+      dpr: window.devicePixelRatio || 1,
+      scratchCanvas: null,
+      scratchCtx: null,
+      confetti: null,
+      customers: [],
+      adminPage: 1,
+      adminPageSize: 50,
+
+      init() {
+        this.scratchCanvas = document.getElementById('scratchCanvas');
+        this.scratchCtx = this.scratchCanvas.getContext('2d', { willReadFrequently: true });
+        this.confetti = new ConfettiEngine('confettiCanvas');
+
+        this.loadStoredData();
+        this.bindEvents();
+        this.initQrModal();
+        this.initAdmin();
+      },
+
+      bindEvents() {
+        // Step 1: Form submission & validation
+        const form = document.getElementById('registrationForm');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (this.validateForm()) {
+            this.formSubmitted = true;
+            this.saveUserAndProceed();
+          }
+        });
+
+        // Quick Demo Fill
+        document.getElementById('btnQuickDemo').addEventListener('click', () => {
+          document.getElementById('userName').value = 'Abhinandan Kumar';
+          document.getElementById('userPhone').value = '9876543210';
+          document.getElementById('userEmail').value = 'abhinandan@example.com';
+          document.getElementById('purchaseDate').value = new Date().toISOString().slice(0,10);
+          document.getElementById('userImei').value = '356789012345678';
+          document.getElementById('userBill').value = 'INV-2026-904';
+          document.getElementById('termsAgree').checked = true;
+          this.clearErrors();
+        });
+
+        // Step 2: Scratch Card Events (Desktop & Touch Mobile)
+        const canvas = this.scratchCanvas;
+
+        // Pointer / Mouse events
+        canvas.addEventListener('mousedown', (e) => this.handleScratchStart(e));
+        window.addEventListener('mousemove', (e) => this.handleScratchMove(e));
+        window.addEventListener('mouseup', () => this.handleScratchEnd());
+
+        // Touch events (with active touch coordinate mapping and passive:false)
+        canvas.addEventListener('touchstart', (e) => this.handleScratchStart(e), { passive: false });
+        window.addEventListener('touchmove', (e) => this.handleScratchMove(e), { passive: false });
+        window.addEventListener('touchend', () => this.handleScratchEnd());
+        window.addEventListener('touchcancel', () => this.handleScratchEnd());
+
+        // Automatic/quick reveal is disabled. Reward can only be revealed
+        // after the customer submits the required form and completes scratching.
+
+        // Step 3: Copy Code Button
+        document.getElementById('btnCopyCode').addEventListener('click', () => {
+          this.copyVoucherCode();
+        });
+
+        // Celebrate again button
+        document.getElementById('btnRetossConfetti').addEventListener('click', () => {
+          this.confetti.burst(160);
+          this.showToast('🎉 Confetti Celebration!');
+        });
+
+        // Reset flow button
+        document.getElementById('btnResetFlow').addEventListener('click', () => {
+          this.resetApplication();
+        });
+      },
+
+      /* Form Validation */
+      validateForm() {
+        let valid = true;
+        this.clearErrors();
+
+        const nameInput = document.getElementById('userName');
+        const phoneInput = document.getElementById('userPhone');
+        const emailInput = document.getElementById('userEmail');
+        const termsInput = document.getElementById('termsAgree');
+        const dateInput = document.getElementById('purchaseDate');
+        const imeiInput = document.getElementById('userImei');
+
+        if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+          document.getElementById('nameError').style.display = 'block';
+          valid = false;
+        }
+
+        const phoneRegex = /^[0-9]{10}$/;
+        const cleanedPhone = phoneInput.value.replace(/[^0-9]/g, '');
+        if (!phoneRegex.test(cleanedPhone)) {
+          document.getElementById('phoneError').style.display = 'block';
+          valid = false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value.trim())) {
+          document.getElementById('emailError').style.display = 'block';
+          valid = false;
+        }
+
+        if (!dateInput.value) {
+          document.getElementById('dateError').style.display = 'block';
+          valid = false;
+        }
+        const imei = imeiInput.value.replace(/\D/g, '');
+        if (!/^\d{15}$/.test(imei)) {
+          document.getElementById('imeiError').style.display = 'block';
+          valid = false;
+        }
+
+        if (!termsInput.checked) {
+          alert('Please agree to promotional terms to proceed.');
+          valid = false;
+        }
+
+        return valid;
+      },
+
+      clearErrors() {
+        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('phoneError').style.display = 'none';
+        document.getElementById('emailError').style.display = 'none';
+        document.getElementById('dateError').style.display = 'none';
+        document.getElementById('imeiError').style.display = 'none';
+      },
+
+      saveUserAndProceed() {
+        this.user.name = document.getElementById('userName').value.trim();
+        this.user.phone = document.getElementById('userPhone').value.replace(/[^0-9]/g, '');
+        this.user.email = document.getElementById('userEmail').value.trim();
+        this.user.purchaseDate = document.getElementById('purchaseDate').value;
+        this.user.imei = document.getElementById('userImei').value.replace(/\D/g, '');
+        this.user.bill = document.getElementById('userBill').value.trim() || 'N/A';
+        this.user.claimedAt = new Date().toLocaleString('en-IN', {
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        });
+
+        // Select a winning prize from pool
+        const prizeIdx = Math.floor(Math.random() * this.prizesPool.length);
+        this.currentPrize = this.prizesPool[prizeIdx];
+
+        this.saveCustomerRecord('Pending');
+
+        // Generate unique verifiable coupon code
+        const randomHex = Math.random().toString(36).substring(2, 6).toUpperCase();
+        this.currentVoucherCode = `${this.currentPrize.prefix}-${randomHex}`;
+
+        // Populate underlayer prize info
+        document.getElementById('prizeTitle').textContent = this.currentPrize.title;
+        document.getElementById('prizeCategory').textContent = '🎉 Guaranteed Winner!';
+        document.getElementById('prizeCodeTeaser').textContent = `CODE: ${this.currentVoucherCode.substring(0, 4)}••••••`;
+
+        // Switch to Step 2
+        this.switchStep(2);
+        this.setupScratchSurface();
+      },
+
+      /* Canvas & Scratch Initialization */
+      setupScratchSurface() {
+        const box = document.getElementById('scratchCardBox');
+        const rect = box.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        this.dpr = window.devicePixelRatio || 1;
+        this.scratchCanvas.width = width * this.dpr;
+        this.scratchCanvas.height = height * this.dpr;
+        this.scratchCanvas.style.width = `${width}px`;
+        this.scratchCanvas.style.height = `${height}px`;
+
+        const ctx = this.scratchCtx;
+        ctx.scale(this.dpr, this.dpr);
+
+        // Draw High-End Brushed Metallic Foil with gold & silver sheen
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, '#d1d5db');
+        grad.addColorStop(0.25, '#9ca3af');
+        grad.addColorStop(0.5, '#fef08a');
+        grad.addColorStop(0.75, '#e5e7eb');
+        grad.addColorStop(1, '#94a3b8');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Add subtle geometric stippling / texture overlay
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+        for (let x = 8; x < width; x += 16) {
+          for (let y = 8; y < height; y += 16) {
+            ctx.beginPath();
+            ctx.arc(x, y, 1.2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Elegant card border on canvas
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(10, 10, width - 20, height - 20);
+
+        // Dashed inner border
+        ctx.setLineDash([6, 6]);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(16, 16, width - 32, height - 32);
+        ctx.setLineDash([]);
+
+        // Stamped Center Badge / Instructions
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.75)';
+        ctx.beginPath();
+        if (ctx.roundRect) {
+          ctx.roundRect(width / 2 - 120, height / 2 - 44, 240, 88, 14);
+        } else {
+          ctx.rect(width / 2 - 120, height / 2 - 44, 240, 88);
+        }
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // Icon & Typography
+        ctx.font = '700 20px ' + getComputedStyle(document.body).fontFamily;
+        ctx.fillStyle = '#fef08a';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🪙 SCRATCH HERE', width / 2, height / 2 - 14);
+
+        ctx.font = '500 12px ' + getComputedStyle(document.body).fontFamily;
+        ctx.fillStyle = '#cbd5e1';
+        ctx.fillText('Rub with finger or mouse to reveal', width / 2, height / 2 + 14);
+
+        // Reset progress state
+        this.hasRevealed = false;
+        this.scratchCanvas.classList.remove('revealed');
+        this.scratchCanvas.style.opacity = '1';
+        this.scratchCanvas.style.pointerEvents = 'auto';
+        this.updateScratchProgress(0);
+      },
+
+      /* Scratch Pointer Coordinates */
+      getCanvasPos(e) {
+        const rect = this.scratchCanvas.getBoundingClientRect();
+        let clientX, clientY;
+        if (e.touches && e.touches.length > 0) {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top
+        };
+      },
+
+      handleScratchStart(e) {
+        if (this.hasRevealed) return;
+        if (e.cancelable) e.preventDefault();
+        this.isScratching = true;
+        const pos = this.getCanvasPos(e);
+        this.lastPoint = pos;
+        this.scratchPoint(pos.x, pos.y);
+      },
+
+      handleScratchMove(e) {
+        if (!this.isScratching || this.hasRevealed) return;
+        if (e.cancelable) e.preventDefault();
+        const currentPoint = this.getCanvasPos(e);
+        this.scratchLine(this.lastPoint, currentPoint);
+        this.lastPoint = currentPoint;
+
+        // Throttle calculation
+        if (!this.calcTimer) {
+          this.calcTimer = setTimeout(() => {
+            this.calcTimer = null;
+            this.checkScratchedPercentage();
+          }, 80);
+        }
+      },
+
+      handleScratchEnd() {
+        this.isScratching = false;
+        this.lastPoint = null;
+        if (!this.hasRevealed) {
+          this.checkScratchedPercentage();
+        }
+      },
+
+      /* Realistic Scratch Mechanics with destination-out */
+      scratchPoint(x, y) {
+        const ctx = this.scratchCtx;
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      },
+
+      scratchLine(start, end) {
+        if (!start || !end) return;
+        const ctx = this.scratchCtx;
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineWidth = 44;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+        ctx.stroke();
+        ctx.restore();
+      },
+
+      /* Scratched percentage calculation via alpha channel sampling */
+      checkScratchedPercentage() {
+        if (this.hasRevealed) return;
+
+        const canvas = this.scratchCanvas;
+        const ctx = this.scratchCtx;
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Sample a grid of points to achieve 60fps without lag
+        const step = Math.max(8, Math.floor(width / 40));
+        let totalSampled = 0;
+        let clearedSampled = 0;
+
+        try {
+          const imgData = ctx.getImageData(0, 0, width, height);
+          const data = imgData.data;
+
+          for (let y = 0; y < height; y += step) {
+            for (let x = 0; x < width; x += step) {
+              const index = (y * width + x) * 4;
+              totalSampled++;
+              // If alpha channel is less than 128, pixel is cleared
+              if (data[index + 3] < 128) {
+                clearedSampled++;
+              }
+            }
+          }
+
+          const percent = Math.min(100, Math.round((clearedSampled / totalSampled) * 100));
+          this.updateScratchProgress(percent);
+
+          // Threshold: 50% scratched reveals the prize after form submission
+          if (percent >= 50) {
+            this.triggerAutoReveal();
+          }
+        } catch (err) {
+          console.error('Error analyzing scratch canvas:', err);
+        }
+      },
+
+      updateScratchProgress(percent) {
+        document.getElementById('scratchPercentText').textContent = `${percent}%`;
+        document.getElementById('scratchProgressBar').style.width = `${percent}%`;
+      },
+
+      triggerAutoReveal() {
+        if (!this.formSubmitted || this.hasRevealed) return;
+        this.hasRevealed = true;
+        this.updateScratchProgress(100);
+
+        // Elegant fade-out animation on canvas
+        this.scratchCanvas.classList.add('revealed');
+
+        // Transition to Step 3 after fade completes
+        setTimeout(() => {
+          this.showCelebrationStage();
+        }, 650);
+      },
+
+      /* Step 3: Celebration & Claim Voucher */
+      showCelebrationStage() {
+        this.switchStep(3);
+
+        // Set prize details
+        document.getElementById('winPrizeTitle').textContent = this.currentPrize.title;
+        document.getElementById('winPrizeDesc').textContent = this.currentPrize.desc;
+        document.getElementById('winCouponCode').textContent = this.currentVoucherCode;
+
+        // Set customer summary
+        document.getElementById('sumName').textContent = this.user.name;
+        document.getElementById('sumPhone').textContent = '+91 ' + this.user.phone;
+        document.getElementById('sumEmail').textContent = this.user.email;
+        document.getElementById('sumPurchaseDate').textContent = this.user.purchaseDate;
+        document.getElementById('sumImei').textContent = this.user.imei;
+        document.getElementById('sumBill').textContent = this.user.bill;
+        document.getElementById('sumTimestamp').textContent = this.user.claimedAt;
+
+        this.updateCustomerStatus(this.currentVoucherCode, 'Pending');
+
+        // Trigger Confetti Explosion
+        this.confetti.burst(160);
+      },
+
+      copyVoucherCode() {
+        const code = this.currentVoucherCode;
+        const copyBtn = document.getElementById('btnCopyCode');
+        const copyText = document.getElementById('copyBtnText');
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(() => {
+            this.showCopyFeedback(copyBtn, copyText);
+          }).catch(() => {
+            this.fallbackCopy(code, copyBtn, copyText);
+          });
+        } else {
+          this.fallbackCopy(code, copyBtn, copyText);
+        }
+      },
+
+      fallbackCopy(text, btn, textEl) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          this.showCopyFeedback(btn, textEl);
+        } catch (e) {
+          alert('Coupon code: ' + text);
+        }
+        document.body.removeChild(textarea);
+      },
+
+      showCopyFeedback(btn, textEl) {
+        btn.classList.add('copied');
+        textEl.textContent = 'Copied! ✓';
+        this.showToast('Voucher code copied to clipboard!');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          textEl.textContent = 'Copy Code';
+        }, 2500);
+      },
+
+      showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastText').textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2600);
+      },
+
+      /* Step Switcher */
+
+      loadStoredData() {
+        try {
+          const savedGifts = JSON.parse(localStorage.getItem('bajrang_gifts') || 'null');
+          const savedCustomers = JSON.parse(localStorage.getItem('bajrang_customers') || '[]');
+          if (Array.isArray(savedGifts) && savedGifts.length) this.prizesPool = savedGifts;
+          if (Array.isArray(savedCustomers)) this.customers = savedCustomers;
+        } catch(e) { console.warn('Storage load failed', e); }
+      },
+
+      persistData() {
+        localStorage.setItem('bajrang_gifts', JSON.stringify(this.prizesPool));
+        localStorage.setItem('bajrang_customers', JSON.stringify(this.customers));
+      },
+
+      saveCustomerRecord(status='Pending') {
+        const record = {
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2,7),
+          name:this.user.name, phone:this.user.phone, email:this.user.email,
+          purchaseDate:this.user.purchaseDate, imei:this.user.imei, bill:this.user.bill,
+          gift:this.currentPrize.title, voucher:this.currentVoucherCode,
+          status, claimedAt:this.user.claimedAt
+        };
+        this.customers.unshift(record);
+        this.persistData();
+      },
+
+      updateCustomerStatus(voucher, status) {
+        const row=this.customers.find(c=>c.voucher===voucher);
+        if(row){ row.status=status; row.claimedAt=this.user.claimedAt; this.persistData(); }
+      },
+
+      initAdmin() {
+        document.getElementById('openAdminBtn').addEventListener('click',()=>this.openAdmin());
+        document.getElementById('openStatusBtn').addEventListener('click',()=>this.openStatus());
+        document.getElementById('closeStatusBtn').addEventListener('click',()=>document.getElementById('statusModal').classList.remove('open'));
+        document.getElementById('checkStatusBtn').addEventListener('click',()=>this.checkCustomerStatus());
+        document.getElementById('statusModal').addEventListener('click',e=>{if(e.target.id==='statusModal')e.currentTarget.classList.remove('open');});
+        document.getElementById('closeAdminBtn').addEventListener('click',()=>document.getElementById('adminModal').classList.remove('open'));
+        document.getElementById('adminLoginBtn').addEventListener('click',()=>this.adminLogin());
+        document.getElementById('adminLogoutBtn').addEventListener('click',()=>this.adminLogout());
+        document.getElementById('addGiftBtn').addEventListener('click',()=>this.addGift());
+        document.getElementById('customerSearch').addEventListener('input',()=>{this.adminPage=1;this.renderCustomers();});
+        document.getElementById('clearCustomersBtn').addEventListener('click',()=>{
+          if(confirm('Delete all customer records from this browser?')){this.customers=[];this.persistData();this.renderCustomers();}
+        });
+        document.getElementById('adminModal').addEventListener('click',e=>{if(e.target.id==='adminModal')e.currentTarget.classList.remove('open');});
+      },
+
+      openAdmin() {
+        document.getElementById('adminModal').classList.add('open');
+        const logged= sessionStorage.getItem('bajrang_admin')==='1';
+        document.getElementById('adminLoginView').style.display=logged?'none':'block';
+        document.getElementById('adminDashboard').style.display=logged?'block':'none';
+        if(logged) this.renderAdmin();
+      },
+
+      adminLogin() {
+        const id=document.getElementById('adminIdInput').value.trim();
+        const pass=document.getElementById('adminPassInput').value;
+        const saved=JSON.parse(localStorage.getItem('bajrang_admin_creds')||'null') || {id:'admin',pass:'admin1234'};
+        if(id===saved.id && pass===saved.pass){
+          sessionStorage.setItem('bajrang_admin','1');
+          document.getElementById('adminLoginError').style.display='none';
+          document.getElementById('adminLoginView').style.display='none';
+          document.getElementById('adminDashboard').style.display='block';
+          this.renderAdmin();
+        } else document.getElementById('adminLoginError').style.display='block';
+      },
+
+      adminLogout() {
+        sessionStorage.removeItem('bajrang_admin');
+        document.getElementById('adminLoginView').style.display='block';
+        document.getElementById('adminDashboard').style.display='none';
+      },
+
+      renderAdmin() {
+        this.renderGifts(); this.renderCustomers();
+        const stats=document.getElementById('adminStats');
+        stats.innerHTML=`<div class="admin-stat"><strong>${this.customers.length}</strong><span>Total Customers</span></div>
+          <div class="admin-stat"><strong>${this.customers.filter(x=>x.status==='Approved').length}</strong><span>Approved Gifts</span></div>
+          <div class="admin-stat"><strong>${this.prizesPool.length}</strong><span>Active Gifts</span></div>`;
+      },
+
+      renderGifts() {
+        const box=document.getElementById('giftList');
+        box.innerHTML='';
+        this.prizesPool.forEach((g,i)=>{
+          const row=document.createElement('div'); row.className='gift-row';
+          row.innerHTML=`<input class="form-control" value="${this.escapeAttr(g.title)}">
+            <input class="form-control" value="${this.escapeAttr(g.desc)}">
+            <input class="form-control" value="${this.escapeAttr(g.prefix)}">
+            <button class="btn-secondary save-gift" style="flex:0 0 auto">Save</button>
+            <button class="btn-secondary del-gift" style="flex:0 0 auto">Delete</button>`;
+          row.querySelector('.save-gift').onclick=()=>{
+            const v=row.querySelectorAll('input'); this.prizesPool[i]={title:v[0].value.trim(),desc:v[1].value.trim(),prefix:v[2].value.trim().replace(/[^A-Za-z0-9_-]/g,'')||'GIFT'};
+            this.persistData(); this.renderAdmin(); this.showToast('🎁 Gift updated');
+          };
+          row.querySelector('.del-gift').onclick=()=>{
+            if(this.prizesPool.length<=1){alert('At least one gift must remain.');return;}
+            this.prizesPool.splice(i,1);this.persistData();this.renderAdmin();
+          };
+          box.appendChild(row);
+        });
+      },
+
+      addGift() {
+        const title=document.getElementById('newGiftTitle').value.trim();
+        const desc=document.getElementById('newGiftDesc').value.trim();
+        const prefix=document.getElementById('newGiftPrefix').value.trim().replace(/[^A-Za-z0-9_-]/g,'');
+        if(!title){alert('Gift name is required.');return;}
+        this.prizesPool.push({title,desc:desc||'Special gift from Bajrang Communication',prefix:prefix||'GIFT'});
+        this.persistData();
+        document.getElementById('newGiftTitle').value='';document.getElementById('newGiftDesc').value='';document.getElementById('newGiftPrefix').value='';
+        this.renderAdmin();this.showToast('🎁 New gift added');
+      },
+
+      renderCustomers() {
+        const q=document.getElementById('customerSearch').value.trim().toLowerCase();
+        const filtered=this.customers.filter(c=>[c.name,c.phone,c.imei,c.bill,c.gift,c.status].join(' ').toLowerCase().includes(q));
+        const totalPages=Math.max(1,Math.ceil(filtered.length/this.adminPageSize));
+        if(this.adminPage>totalPages)this.adminPage=totalPages;
+        const start=(this.adminPage-1)*this.adminPageSize;
+        const rows=filtered.slice(start,start+this.adminPageSize);
+        document.getElementById('customerCountBadge').textContent=`(${filtered.length} shown / ${this.customers.length} total)`;
+        const tbody=document.querySelector('#customerTable tbody');
+        tbody.innerHTML=rows.map((c,idx)=>{
+          const status=c.status||'Pending';
+          const statusColor=status==='Approved'?'#34d399':status==='Rejected'?'#f87171':'#fbbf24';
+          return `<tr>
+            <td style="padding:7px">${start+idx+1}</td><td style="padding:7px">${this.escapeHtml(c.name)}</td>
+            <td style="padding:7px">${this.escapeHtml(c.phone)}</td><td style="padding:7px">${this.escapeHtml(c.purchaseDate)}</td>
+            <td style="padding:7px">${this.escapeHtml(c.imei)}</td><td style="padding:7px">${this.escapeHtml(c.bill)}</td>
+            <td style="padding:7px">${this.escapeHtml(c.gift)}</td>
+            <td style="padding:7px"><strong style="color:${statusColor}">${this.escapeHtml(status)}</strong></td>
+            <td style="padding:7px;white-space:nowrap">
+              <button class="admin-page-btn" onclick="App.setCustomerStatus('${this.escapeAttr(c.id)}','Approved')">Approve</button>
+              <button class="admin-page-btn" onclick="App.setCustomerStatus('${this.escapeAttr(c.id)}','Rejected')">Reject</button>
+              <button class="admin-page-btn" onclick="App.setCustomerStatus('${this.escapeAttr(c.id)}','Pending')">Pending</button>
+              <button class="admin-page-btn" onclick="App.deleteCustomer('${this.escapeAttr(c.id)}')" style="color:#f87171">Delete</button>
+            </td>
+          </tr>`;
+        }).join('') || `<tr><td colspan="9" style="padding:18px;text-align:center;color:#94a3b8">No customer records yet.</td></tr>`;
+        const pg=document.getElementById('customerPagination');pg.innerHTML='';
+        for(let n=1;n<=totalPages;n++){if(n>10 && n<totalPages-1)continue;const b=document.createElement('button');b.className='admin-page-btn'+(n===this.adminPage?' active':'');b.textContent=n;b.onclick=()=>{this.adminPage=n;this.renderCustomers();};pg.appendChild(b);}
+      },
+
+      setCustomerStatus(id,status) {
+        const row=this.customers.find(c=>c.id===id);
+        if(!row)return;
+        row.status=status;
+        row.statusUpdatedAt=new Date().toLocaleString('en-IN');
+        this.persistData();
+        this.renderAdmin();
+        this.showToast(`Gift status: ${status}`);
+      },
+
+      deleteCustomer(id) {
+        const row=this.customers.find(c=>c.id===id);
+        if(!row)return;
+        if(confirm(`Delete customer ${row.name || row.phone}? This cannot be undone.`)){
+          this.customers=this.customers.filter(c=>c.id!==id);
+          this.persistData();
+          this.renderAdmin();
+          this.showToast('Customer deleted');
+        }
+      },
+
+      openStatus() {
+        document.getElementById('statusModal').classList.add('open');
+        document.getElementById('statusCheckError').style.display='none';
+        document.getElementById('statusResult').style.display='none';
+        document.getElementById('statusPhoneInput').value='';
+        document.getElementById('statusImeiInput').value='';
+      },
+
+      checkCustomerStatus() {
+        const phone=document.getElementById('statusPhoneInput').value.replace(/\D/g,'');
+        const imei=document.getElementById('statusImeiInput').value.replace(/\D/g,'');
+        const err=document.getElementById('statusCheckError');
+        const result=document.getElementById('statusResult');
+        err.style.display='none'; result.style.display='none';
+        if(!phone && !imei){err.textContent='Mobile number or IMEI is required.';err.style.display='block';return;}
+        if(phone && phone.length!==10){err.textContent='Enter a valid 10 digit mobile number.';err.style.display='block';return;}
+        if(imei && imei.length!==15){err.textContent='Enter a valid 15 digit IMEI.';err.style.display='block';return;}
+        const matches=this.customers.filter(c=>(phone && c.phone===phone)||(imei && c.imei===imei));
+        if(!matches.length){err.textContent='No customer record found. Please check your Mobile/IMEI.';err.style.display='block';return;}
+        const c=matches[0], status=c.status||'Pending';
+        const color=status==='Approved'?'#34d399':status==='Rejected'?'#f87171':'#fbbf24';
+        result.innerHTML=`<div style="border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px;background:rgba(15,23,42,.55);">
+          <div style="font-weight:800;font-size:1rem;margin-bottom:10px;">${this.escapeHtml(c.name)}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.78rem;">
+            <div><span style="color:var(--text-muted)">Mobile:</span> ${this.escapeHtml(c.phone)}</div>
+            <div><span style="color:var(--text-muted)">IMEI:</span> ${this.escapeHtml(c.imei)}</div>
+            <div><span style="color:var(--text-muted)">Invoice:</span> ${this.escapeHtml(c.bill)}</div>
+            <div><span style="color:var(--text-muted)">Gift:</span> ${this.escapeHtml(c.gift)}</div>
+          </div>
+          <div style="margin-top:12px;font-size:.9rem;font-weight:800;color:${color};">Status: ${this.escapeHtml(status)}</div>
+          ${status==='Approved' ? `<div style="margin-top:6px;color:#a7f3d0;font-size:.76rem;">🎉 आपका gift approved है।</div>` : status==='Rejected' ? `<div style="margin-top:6px;color:#fecaca;font-size:.76rem;">Gift approval rejected है। कृपया दुकान से संपर्क करें।</div>` : `<div style="margin-top:6px;color:#fde68a;font-size:.76rem;">Gift अभी pending approval में है।</div>`}
+        </div>`;
+        result.style.display='block';
+      },
+
+      escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));},
+      escapeAttr(v){return this.escapeHtml(v);},
+
+      switchStep(stepNum) {
+        const views = [document.getElementById('viewRegister'), document.getElementById('viewScratch'), document.getElementById('viewClaim')];
+        views.forEach((v, idx) => {
+          v.classList.toggle('active', idx === stepNum - 1);
+        });
+
+        // Update Stepper indicators
+        const progressFill = document.getElementById('stepProgressFill');
+        if (stepNum === 1) progressFill.style.width = '0%';
+        else if (stepNum === 2) progressFill.style.width = '50%';
+        else if (stepNum === 3) progressFill.style.width = '100%';
+
+        for (let i = 1; i <= 3; i++) {
+          const el = document.getElementById(`stepIndicator${i}`);
+          el.classList.remove('active', 'completed');
+          if (i === stepNum) el.classList.add('active');
+          else if (i < stepNum) el.classList.add('completed');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      resetApplication() {
+        document.getElementById('registrationForm').reset();
+        this.clearErrors();
+        this.switchStep(1);
+      },
+
+      /* Campaign QR Code Host Modal */
+      initQrModal() {
+        const modal = document.getElementById('qrModal');
+        const openBtn = document.getElementById('openQrModalBtn');
+        const closeBtn = document.getElementById('closeQrModalBtn');
+        const qrContainer = document.getElementById('qrContainer');
+        const printQrSpot = document.getElementById('printQrSpot');
+        const qrUrlInput = document.getElementById('qrCampaignUrl');
+        const updateBtn = document.getElementById('btnUpdateQrUrl');
+        const printBtn = document.getElementById('btnPrintQr');
+
+        // Set default URL
+        const currentUrl = window.location.href.split('#')[0] || 'https://bajrang-comm.com/scratch-and-win';
+        qrUrlInput.value = currentUrl;
+
+        const renderQR = (url) => {
+          try {
+            const svgStr = MiniQR.toSVG(url);
+            qrContainer.innerHTML = svgStr;
+            printQrSpot.innerHTML = svgStr;
+          } catch (e) {
+            qrContainer.innerHTML = '<div style="color:red;font-size:12px;">URL is too long for QR</div>';
+          }
+        };
+
+        renderQR(qrUrlInput.value);
+
+        openBtn.addEventListener('click', () => {
+          modal.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('open');
+        });
+
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('open');
+        });
+
+        updateBtn.addEventListener('click', () => {
+          const url = qrUrlInput.value.trim();
+          if (url) {
+            renderQR(url);
+            this.showToast('QR Code updated!');
+          }
+        });
+
+        printBtn.addEventListener('click', () => {
+          window.print();
+        });
+      }
+    };
+
+    // Initialize application when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      App.init();
     });
-    return await r.json();
-  }catch(e){
-    console.warn("Google Sheet sync failed:",e);
-    return null;
-  }
-}
-async function syncRecord(c){
-  const r=await apiRequest("upsert",{customer:c},"POST");
-  if(r && !r.ok && r.error) alert(r.error);
-  return r;
-}
-async function loadServerCustomer(phone){
-  const r=await apiRequest("get",{phone});
-  return r?.ok ? r.customer : null;
-}
-async function loadServerRecords(){
-  const r=await apiRequest("list");
-  return r?.ok && Array.isArray(r.customers) ? r.customers : null;
-}
-function encodeCustomer(c){
-  return btoa(unescape(encodeURIComponent(JSON.stringify({
-    phone:c.phone,name:c.name,model:c.model,imei:c.imei,bill:c.bill,purchaseDate:c.purchaseDate,
-    scratchCount:c.scratchCount||0,gift:c.gift||"",claim:c.claim||"Pending"
-  }))));
-}
-function decodeCustomer(v){
-  try{return JSON.parse(decodeURIComponent(escape(atob(v))))}catch(e){return null}
-}
-function customerLink(c){
-  const u=new URL(window.location.href);
-  u.searchParams.set("customer",encodeCustomer(c));
-  return u.toString();
-}
-function renderCustomerQR(c){
-  const box=document.getElementById("customerQr");
-  if(!box)return;
-  const img=document.createElement("img");
-  img.alt="Customer QR"; img.width=220; img.height=220;
-  img.src="https://quickchart.io/qr?size=220&text="+encodeURIComponent(customerLink(c));
-  box.innerHTML=""; box.appendChild(img);
-}
-function copyCustomerLink(){
-  if(!current)return;
-  const c=db()[current]; if(!c)return;
-  const link=customerLink(c);
-  if(navigator.clipboard)
-    navigator.clipboard.writeText(link).then(()=>alert("Customer link copied")).catch(()=>alert(link));
-  else alert(link);
-}
-function openQRCustomer(){
-  const v=new URLSearchParams(location.search).get("customer");
-  if(!v)return;
-  const c=decodeCustomer(v); if(!c)return;
-  let d=db(); d[c.phone]=c; put(d); current=c.phone; show("customer");
-}
-
-function esc(s){
-  return String(s??"").replace(/[&<>"']/g,m=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[m]));
-}
-function escAttr(s){return esc(s).replace(/`/g,"&#96;")}
-
-window.addEventListener("load",openQRCustomer);
-document.addEventListener("click",e=>{
-  const wrap=document.querySelector(".menu-wrap");
-  if(wrap&&!wrap.contains(e.target))closeMenu();
-});
-</script>
+  </script>
 </body>
 </html>
