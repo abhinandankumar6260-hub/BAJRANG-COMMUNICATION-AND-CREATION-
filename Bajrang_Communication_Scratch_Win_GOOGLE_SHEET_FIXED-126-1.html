@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bajrang Communication — Scratch & Win</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#fff}
+.wrap{max-width:960px;margin:auto;padding:18px}
+.card{background:#ffffff12;border:1px solid #ffffff22;border-radius:20px;padding:20px;margin:14px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative}
+h1{margin:0 0 5px;font-size:24px}
+h2,h3{margin-top:0}
+.muted{opacity:.75;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+input,button,select{width:100%;padding:12px;border-radius:11px;border:0;font-size:15px}
+input,select{color:#111}
+button{background:#f59e0b;color:#111;font-weight:700;cursor:pointer}
+.secondary{background:#fff}.danger{background:#ef4444;color:#fff}.success{background:#22c55e}
+.hidden{display:none}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav button{width:auto}
+.menu-wrap{position:relative}
+.menu-btn{width:48px;height:44px;padding:0;background:#fff;color:#111;font-size:25px;line-height:1}
+.menu{position:absolute;right:0;top:52px;width:190px;background:#fff;color:#111;border-radius:13px;padding:8px;box-shadow:0 12px 35px #0008;z-index:20}
+.menu button{background:transparent;text-align:left;padding:11px;color:#111}
+.menu button:hover{background:#eee}
+.scratch{height:190px;border-radius:18px;background:linear-gradient(135deg,#cbd5e1,#64748b);color:#111;display:flex;align-items:center;justify-content:center;text-align:center;font-size:26px;font-weight:800;cursor:pointer}
+.gift{text-align:center;font-size:28px;padding:25px}
+.stat{background:#0003;border-radius:13px;padding:14px}
+.pill{display:inline-block;padding:6px 10px;border-radius:99px;background:#22c55e;color:#07110a;font-weight:bold}
+.item{display:flex;gap:8px;align-items:center;margin:8px 0}
+.item input:first-child{flex:1}.item button{width:auto}
+.note{border-left:4px solid #f59e0b;padding:10px;background:#0003}
+.invalid{border:2px solid #ef4444!important;box-shadow:0 0 0 3px #ef444433}.valid{border:2px solid #22c55e!important}
+.field-error{color:#fecaca;font-size:12px;font-weight:700;margin-top:5px}.success-overlay{position:fixed;inset:0;background:#020617cc;display:flex;align-items:center;justify-content:center;z-index:9999;animation:fadeIn .25s}.success-box{background:linear-gradient(135deg,#22c55e,#16a34a);padding:32px;border-radius:24px;text-align:center;box-shadow:0 20px 70px #0008;animation:pop .55s cubic-bezier(.2,.8,.2,1)}.success-icon{font-size:64px;animation:bounce .8s}.success-box h2{margin:8px 0}.success-box p{margin:0}.success-box button{margin-top:18px;background:#fff;color:#166534}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes pop{0%{transform:scale(.65);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}@keyframes bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-14px)}70%{transform:translateY(0)}}
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.action-row{grid-template-columns:1fr}h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="card top">
+  <div>
+    <h1>🎁 Bajrang Communication</h1>
+    <div class="muted">SCRATCH • WIN • CHECK STATUS</div>
+  </div>
+  <div class="menu-wrap">
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">⋮</button>
+    <div id="menu" class="menu hidden">
+      <button onclick="show('adminLogin');closeMenu()">🔐 Admin Login</button>
+    </div>
+  </div>
+</header>
+
+<section id="home" class="card">
+  <h2>Welcome 👋</h2>
+  <p>मोबाइल खरीदने के बाद अपना मोबाइल नंबर और खरीदारी की जानकारी भरकर रजिस्टर करें। इसके बाद Scratch & Win Gift और अपना Status देख सकते हैं।</p>
+  <div class="action-row">
+    <button onclick="show('register')">📱 Customer Registration</button>
+    <button class="secondary" onclick="show('statusLookup')">📊 Check Status</button>
+  </div>
+</section>
+
+<section id="register" class="card hidden">
+  <h2>📱 Customer Registration</h2>
+  <p class="muted">सभी जानकारी भरें और Register & Continue दबाएँ। OTP की जरूरत नहीं है।</p>
+  <div class="grid">
+    <input id="regPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number">
+    <input id="regName" placeholder="Customer Name">
+    <input id="regModel" placeholder="Mobile Model">
+    <input id="regImei" maxlength="15" inputmode="numeric" pattern="\d{15}" placeholder="IMEI Number (15 digits)">
+    <input id="regBill" placeholder="Bill / Invoice Number (Required)"><input id="regDate" type="date" aria-label="Customer Purchase Date" required>
+  </div>
+  <br>
+  <button class="success" onclick="registerCustomer()">Register & Continue</button>
+  <br><br>
+  <button class="secondary" onclick="show('home')">Back</button>
+</section>
+
+<section id="customer" class="hidden">
+  <div class="card top">
+    <h2>👤 Customer Dashboard</h2>
+    <button onclick="show('home')" style="width:auto">Home</button>
+  </div>
+
+  <div class="card">
+    <h3>Purchase Details</h3>
+    <div class="grid">
+      <input id="name" placeholder="Customer Name">
+      <input id="model" placeholder="Mobile Model">
+      <input id="imei" maxlength="15" inputmode="numeric" pattern="\d{15}" placeholder="IMEI Number (15 digits)">
+      <input id="bill" placeholder="Bill / Invoice Number" required>
+      <input id="purchaseDate" type="date" aria-label="Customer Purchase Date" required>
+    </div>
+    <br><button onclick="saveCustomer()">Save Details</button>
+  </div>
+
+  <div class="card">
+    <h3>📲 Customer QR</h3>
+    <p class="muted">इस QR को किसी भी मोबाइल से स्कैन करने पर इसी customer की details खुलेंगी।</p>
+    <div id="customerQr" style="text-align:center"></div>
+    <button class="secondary" onclick="copyCustomerLink()">🔗 Copy Customer Link</button>
+  </div>
+
+  <div class="card">
+    <h3>🎫 Scratch & Win</h3>
+    <div id="scratch" class="scratch" onclick="scratch()">TAP TO SCRATCH</div>
+    <div id="gift"></div>
+  </div>
+
+  <div class="card">
+    <h3>📊 My Status</h3>
+    <div id="status" class="grid"></div>
+  </div>
+</section>
+
+<section id="statusLookup" class="card hidden">
+  <h2>📊 Customer Status</h2>
+  <p class="muted">अपना वही मोबाइल नंबर डालें जिससे Registration किया था।</p>
+  <input id="statusPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number">
+  <br><br>
+  <button onclick="checkStatus()">Check Status</button>
+  <br><br>
+  <div id="statusResult"></div>
+  <br>
+  <button class="secondary" onclick="show('home')">Back</button>
+</section>
+
+<section id="adminLogin" class="card hidden">
+  <h2>🔐 Admin Login</h2>
+  <input id="adminId" placeholder="Admin ID">
+  <br><br>
+  <input id="adminPass" type="password" placeholder="Password">
+  <br><br>
+  <button onclick="adminLogin()">Login</button>
+  <br><br>
+  <button class="secondary" onclick="show('home')">Back</button>
+</section>
+
+<section id="admin" class="hidden">
+  <div class="card top">
+    <h2>👨‍💼 Admin Dashboard</h2>
+    <button onclick="show('home')" style="width:auto">Logout</button>
+  </div>
+
+  <div class="card">
+    <h3>🎁 Gifts सेट करें</h3>
+    <p class="muted">Gift का नाम और Weight बदलें। Weight अधिक = winning chance अधिक।</p>
+    <div id="giftList"></div>
+    <button onclick="addGift()">+ Add Gift</button>
+    <br><br><button class="success" onclick="saveGifts()">Save Gifts</button>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ Scratch Rules</h3>
+    <div class="grid">
+      <label>Max Scratch per IMEI
+        <input id="maxScratch" type="number" min="1">
+      </label>
+
+    </div>
+    <br><button onclick="saveRules()">Save Rules</button>
+  </div>
+
+  
+
+  <div class="card">
+    <h3>👥 Customer Records</h3>
+    <input id="recordSearch" placeholder="Search Name / Mobile / IMEI / Model / Invoice"><br><br><div id="records" class="muted"></div><div id="recordPager" class="action-row" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<script>
+const MAX_CUSTOMERS=1000;
+let gifts=JSON.parse(localStorage.getItem("bcc_gifts")||"[]");
+if(!gifts.length)gifts=[
+  {name:"Bluetooth Earphone",weight:1},
+  {name:"Fast Charger",weight:1},
+  {name:"Mobile Cover",weight:2},
+  {name:"Tempered Glass",weight:3}
+];
+let rules=JSON.parse(localStorage.getItem("bcc_rules")||'{"maxScratch":1}');
+let current=null,recordPage=1; const RECORDS_PER_PAGE=50;
+const db=()=>JSON.parse(localStorage.getItem("bcc_customers")||"{}");
+const put=x=>localStorage.setItem("bcc_customers",JSON.stringify(x));
+function toggleMenu(){document.getElementById("menu").classList.toggle("hidden")}
+function closeMenu(){document.getElementById("menu").classList.add("hidden")}
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden"); closeMenu();
+  if(id==="admin")renderAdmin(); if(id==="customer")loadCustomer();
+}
+function customerCount(){return Object.keys(db()).length}
+function registerCustomer(){
+  const phone=regPhone.value.trim(), customerName=regName.value.trim(), mobileModel=regModel.value.trim(),
+        customerImei=regImei.value.trim(), billNo=regBill.value.trim(), purchaseDate=regDate.value;
+  if(!/^\d{10}$/.test(phone))return alert("10 digit mobile number डालें");
+  if(!customerName||!mobileModel||!customerImei)return alert("Name, Model और IMEI भरें");
+  if(!/^\d{15}$/.test(customerImei))return alert("IMEI बिल्कुल 15 digits का होना चाहिए।");
+  if(!billNo)return alert("Invoice Number डालना जरूरी है।");
+  if(!purchaseDate)return alert("Purchase Date डालना जरूरी है।");
+  let d=db(),old=d[phone]||{};
+  if(!old && Object.keys(d).length>=MAX_CUSTOMERS)return alert("Customer limit 1000 तक है। पहले कोई पुराना customer delete करें।");
+  const duplicateInvoice=Object.values(d).find(c=>String(c.bill||"").trim().toLowerCase()===billNo.toLowerCase()&&c.phone!==phone);
+  if(duplicateInvoice)return alert("यह Invoice Number पहले से registered है। दूसरा Invoice Number डालें।");
+  const duplicate=Object.values(d).find(c=>c.imei===customerImei&&c.phone!==phone);
+  if(duplicate)return alert("यह IMEI पहले से registered है। एक IMEI दोबारा register नहीं किया जा सकता।");
+  if(old.imei&&old.imei!==customerImei)return alert("इस customer का IMEI पहले से saved है।");
+  if(old.bill&&old.bill.toLowerCase()!==billNo.toLowerCase())return alert("इस customer का Invoice Number बदला नहीं जा सकता।");
+  const c={...old,phone,name:customerName,model:mobileModel,imei:customerImei,bill:billNo,purchaseDate,
+    scratchCount:old.scratchCount||0,gift:old.gift||""};
+  d[phone]=c;put(d);current=phone;show("customer");alert("Registration successful");
+}
+function loadCustomer(){
+  let c=db()[current]; if(!c){show("home");return}
+  name.value=c.name||""; model.value=c.model||""; imei.value=c.imei||""; bill.value=c.bill||""; purchaseDate.value=c.purchaseDate||""; renderCustomer(c);
+}
+function saveCustomer(){
+  let d=db(),old=d[current]||{},newImei=imei.value.trim(),newBill=bill.value.trim(),newDate=purchaseDate.value;
+  if(!name.value.trim()||!model.value.trim()||!newImei)return alert("Name, Model और IMEI भरें");
+  if(!/^\d{15}$/.test(newImei))return alert("IMEI बिल्कुल 15 digits का होना चाहिए।");
+  if(!newBill)return alert("Invoice Number डालना जरूरी है।"); if(!newDate)return alert("Purchase Date डालना जरूरी है।");
+  if(Object.values(d).some(c=>String(c.bill||"").trim().toLowerCase()===newBill.toLowerCase()&&c.phone!==current))return alert("यह Invoice Number किसी दूसरे customer के नाम पर पहले से registered है।");
+  if(Object.values(d).some(c=>c.imei===newImei&&c.phone!==current))return alert("यह IMEI किसी दूसरे customer के नाम पर पहले से registered है।");
+  if(old.imei&&old.imei!==newImei)return alert("Saved IMEI बदला नहीं जा सकता।");
+  if(old.bill&&old.bill.toLowerCase()!==newBill.toLowerCase())return alert("Saved Invoice Number बदला नहीं जा सकता।");
+  let c={...old,phone:current,name:name.value.trim(),model:model.value.trim(),imei:newImei,bill:newBill,purchaseDate:newDate,scratchCount:old.scratchCount||0,gift:old.gift||""};
+  d[current]=c;put(d);renderCustomer(c);alert("Details saved");
+}
+function invalidField(el,msg){el.classList.add("invalid");el.classList.remove("valid");const old=el.parentElement.querySelector(".field-error");if(old)old.remove();const e=document.createElement("div");e.className="field-error";e.textContent=msg;el.insertAdjacentElement("afterend",e);el.focus();setTimeout(()=>el.classList.remove("invalid"),1800);return false;}
+function showSuccessAnimation(title,msg){const old=document.getElementById("successOverlay");if(old)old.remove();const d=document.createElement("div");d.id="successOverlay";d.className="success-overlay";d.innerHTML=`<div class="success-box"><div class="success-icon">🎉</div><h2>${esc(title)}</h2><p>${esc(msg)}</p><button onclick="document.getElementById('successOverlay').remove()">Continue</button></div>`;document.body.appendChild(d);setTimeout(()=>{const x=document.getElementById("successOverlay");if(x)x.remove()},3500);}
+document.addEventListener("input",e=>{if(e.target.matches("input")){e.target.classList.remove("invalid");const er=e.target.parentElement.querySelector(".field-error");if(er)er.remove();}});
+function pick(){let total=gifts.reduce((s,g)=>s+Math.max(0,+g.weight||0),0);if(!total)return "Gift";let r=Math.random()*total;for(const g of gifts){r-=Math.max(0,+g.weight||0);if(r<=0)return g.name;}return gifts[0]?.name||"Gift";}
+function scratch(){let d=db(),c=d[current];if(!c?.imei)return alert("पहले Purchase Details save करें");if((c.scratchCount||0)>=(+rules.maxScratch||1))return alert("इस IMEI की scratch limit पूरी हो चुकी है");c.scratchCount=(c.scratchCount||0)+1;c.gift=pick();d[current]=c;put(d);renderCustomer(c);gift.innerHTML='<div class="card gift">🎉 Congratulations!<br>🎁 <b>'+esc(c.gift)+'</b></div>';}
+function renderCustomer(c){scratch.textContent=c.scratchCount?"✅ Scratch Completed":"TAP TO SCRATCH";gift.innerHTML=c.gift?'<div class="card gift">🎁 <b>'+esc(c.gift)+'</b></div>':'';status.innerHTML=[["Name",c.name],["Mobile",c.phone],["Model",c.model],["IMEI",c.imei],["Bill",c.bill],["Purchase Date",c.purchaseDate],["Scratch",c.scratchCount?`Completed (${c.scratchCount})`:"Available"],["Gift",c.gift||"Not revealed"]].map(a=>`<div class="stat"><b>${esc(a[0])}</b><br>${esc(a[1]||"-")}</div>`).join("");renderCustomerQR(c);}
+function checkStatus(){const phone=statusPhone.value.trim();if(!/^\d{10}$/.test(phone))return alert("10 digit mobile number डालें");const c=db()[phone];if(!c){statusResult.innerHTML='<div class="note">इस मोबाइल नंबर का कोई Registration Record नहीं मिला।</div>';return;}statusResult.innerHTML=`<div class="grid"><div class="stat"><b>Name</b><br>${esc(c.name||"-")}</div><div class="stat"><b>Mobile</b><br>${esc(c.phone||"-")}</div><div class="stat"><b>Model</b><br>${esc(c.model||"-")}</div><div class="stat"><b>IMEI</b><br>${esc(c.imei||"-")}</div><div class="stat"><b>Invoice</b><br>${esc(c.bill||"-")}</div><div class="stat"><b>Purchase Date</b><br>${esc(c.purchaseDate||"-")}</div><div class="stat"><b>Scratch</b><br>${c.scratchCount?"Completed":"Available"}</div><div class="stat"><b>Gift</b><br>${esc(c.gift||"Not revealed")}</div></div><br><button class="success" onclick="current='${escAttr(phone)}';show('customer')">Open My Dashboard</button>`;}
+function adminLogin(){if(adminId.value==="admin"&&adminPass.value==="Bajrang@2026")show("admin");else alert("Invalid Admin ID/Password");}
+function renderAdmin(){maxScratch.value=rules.maxScratch;renderGifts();recordPage=1;renderRecords();}
+function renderRecords(){let a=Object.values(db());let q=(recordSearch?.value||"").trim().toLowerCase();if(q)a=a.filter(c=>[c.name,c.phone,c.imei,c.model,c.bill,c.purchaseDate,c.gift].some(v=>String(v||"").toLowerCase().includes(q)));const pages=Math.max(1,Math.ceil(a.length/RECORDS_PER_PAGE));if(recordPage>pages)recordPage=pages;const items=a.slice((recordPage-1)*RECORDS_PER_PAGE,recordPage*RECORDS_PER_PAGE);records.innerHTML=items.length?items.map(c=>`<div class="stat" style="margin:8px 0"><b>${esc(c.name||"-")}</b> | ${esc(c.phone||"-")} | ${esc(c.model||"-")}<br>IMEI: <b>${esc(c.imei||"-")}</b> | Invoice: <b>${esc(c.bill||"-")}</b> | Date: <b>${esc(c.purchaseDate||"-")}</b> | Gift: <b>${esc(c.gift||"Not revealed")}</b><br><br><button class="danger" onclick="deleteCustomer('${escAttr(c.phone)}')">🗑️ Delete Customer</button></div>`).join(""):"No records found.";recordPager.innerHTML=`<button class="secondary" onclick="changeRecordPage(-1)" ${recordPage<=1?'disabled':''}>⬅ Previous</button><div class="stat" style="text-align:center">Page ${recordPage} / ${pages}<br>${a.length} / ${MAX_CUSTOMERS} customer(s)</div><button class="secondary" onclick="changeRecordPage(1)" ${recordPage>=pages?'disabled':''}>Next ➡</button>`;}
+function changeRecordPage(n){recordPage=Math.max(1,recordPage+n);renderRecords();}
+function deleteCustomer(phone){let d=db(),c=d[phone];if(!c)return alert("Customer record नहीं मिला।");if(!confirm(`क्या आप ${c.name||"इस customer"} का पूरा record delete करना चाहते हैं?`))return;delete d[phone];put(d);if(current===phone)current=null;renderRecords();alert("Customer record successfully deleted.");}
+function renderGifts(){giftList.innerHTML=gifts.map((g,i)=>`<div class="item"><input value="${escAttr(g.name)}" onchange="gifts[${i}].name=this.value"><input type="number" min="0" value="${g.weight}" style="max-width:100px" onchange="gifts[${i}].weight=+this.value"><button class="danger" onclick="gifts.splice(${i},1);renderGifts()">Delete</button></div>`).join("");}
+document.addEventListener("input",e=>{if(e.target&&e.target.id==="recordSearch"){recordPage=1;renderRecords()}});function addGift(){gifts.push({name:"New Gift",weight:1});renderGifts()}function saveGifts(){localStorage.setItem("bcc_gifts",JSON.stringify(gifts));alert("Gifts saved")}function saveRules(){rules={maxScratch:+maxScratch.value||1};localStorage.setItem("bcc_rules",JSON.stringify(rules));alert("Rules saved")}
+function encodeCustomer(c){return btoa(unescape(encodeURIComponent(JSON.stringify({phone:c.phone,name:c.name,model:c.model,imei:c.imei,bill:c.bill,purchaseDate:c.purchaseDate,scratchCount:c.scratchCount||0,gift:c.gift||""}))));}
+function decodeCustomer(v){try{return JSON.parse(decodeURIComponent(escape(atob(v))))}catch(e){return null}}
+function customerLink(c){const u=new URL(window.location.href);u.searchParams.set("customer",encodeCustomer(c));return u.toString()}
+function renderCustomerQR(c){const box=document.getElementById("customerQr");if(!box)return;const img=document.createElement("img");img.alt="Customer QR";img.width=220;img.height=220;img.src="https://quickchart.io/qr?size=220&text="+encodeURIComponent(customerLink(c));box.innerHTML="";box.appendChild(img)}
+function copyCustomerLink(){if(!current)return;const c=db()[current];if(!c)return;const link=customerLink(c);if(navigator.clipboard)navigator.clipboard.writeText(link).then(()=>alert("Customer link copied")).catch(()=>alert(link));else alert(link)}
+function openQRCustomer(){const v=new URLSearchParams(location.search).get("customer");if(!v)return;const c=decodeCustomer(v);if(!c)return;let d=db();if(!d[c.phone]&&Object.keys(d).length>=MAX_CUSTOMERS)return alert("Customer limit 1000 तक है।");d[c.phone]=c;put(d);current=c.phone;show("customer")}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function escAttr(s){return esc(s).replace(/`/g,"&#96;")}
+window.addEventListener("load",openQRCustomer);document.addEventListener("click",e=>{const wrap=document.querySelector(".menu-wrap");if(wrap&&!wrap.contains(e.target))closeMenu()});
+</script>
+</body>
+</html>
